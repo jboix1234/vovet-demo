@@ -233,25 +233,53 @@ footer{background:#111820;padding:60px 0 26px}
 @media(max-width:560px){.plans-grid{grid-template-columns:1fr}}
 
 /* ══════════════════════════════
-   PAGE: NOSALTRES
+   PAGE: QUI SOM
 ══════════════════════════════ */
 #pg-about{background:var(--cream);padding-top:90px;min-height:100vh}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-.about-img{position:relative}
-.about-blob{width:100%;aspect-ratio:1;border-radius:60% 40% 55% 45% / 50% 60% 40% 50%;background:var(--teal-l);display:flex;align-items:center;justify-content:center;animation:blob 8s ease-in-out infinite}
-.about-blob i{font-size:6rem;color:var(--teal-d);opacity:.45}
+.qs-intro{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;padding:56px 0 64px;border-bottom:1px solid rgba(0,0,0,.07)}
+.qs-intro-img{position:relative}
+.qs-blob{width:100%;aspect-ratio:1;border-radius:60% 40% 55% 45% / 50% 60% 40% 50%;background:var(--teal-l);display:flex;align-items:center;justify-content:center;animation:blob 8s ease-in-out infinite}
+.qs-blob i{font-size:5.5rem;color:var(--teal-d);opacity:.4}
 @keyframes blob{0%,100%{border-radius:60% 40% 55% 45% / 50% 60% 40% 50%}33%{border-radius:40% 60% 45% 55% / 60% 40% 55% 45%}66%{border-radius:55% 45% 60% 40% / 45% 55% 40% 60%}}
-.about-badge{position:absolute;bottom:20px;right:-12px;background:var(--yellow);border-radius:18px;padding:14px 18px;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.1)}
-.about-badge strong{display:block;font-size:1.7rem;font-weight:900;color:var(--dark);line-height:1}
-.about-badge span{font-size:.68rem;color:rgba(28,43,58,.55);text-transform:uppercase;letter-spacing:.06em;font-weight:700}
-.about-text p{font-size:.95rem;color:var(--gray);line-height:1.8;margin-bottom:14px}
-.about-feats{display:flex;flex-direction:column;gap:14px;margin:26px 0 34px}
-.af{display:flex;align-items:flex-start;gap:14px}
-.af-icon{width:40px;height:40px;border-radius:12px;background:var(--teal-l);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.af-icon i{font-size:1.2rem;color:var(--teal-d)}
-.af-text strong{display:block;font-size:.88rem;font-weight:800;color:var(--dark);margin-bottom:2px}
-.af-text span{font-size:.8rem;color:var(--gray)}
-@media(max-width:900px){.about-grid{grid-template-columns:1fr;gap:48px}.about-img{max-width:360px;margin:0 auto}.about-badge{right:0}}
+.qs-badge{position:absolute;bottom:16px;right:-12px;background:var(--yellow);border-radius:16px;padding:12px 18px;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.1)}
+.qs-badge strong{display:block;font-size:1.6rem;font-weight:900;color:var(--dark);line-height:1}
+.qs-badge span{font-size:.65rem;color:rgba(28,43,58,.55);text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+.qs-intro-text p{font-size:.95rem;color:var(--gray);line-height:1.8;margin-bottom:14px}
+@media(max-width:900px){.qs-intro{grid-template-columns:1fr;gap:40px}.qs-intro-img{max-width:340px;margin:0 auto}.qs-badge{right:0}}
+
+.qs-values{padding:60px 0;border-bottom:1px solid rgba(0,0,0,.07)}
+.qs-values-title{text-align:center;margin-bottom:44px}
+.qs-values-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.qv{background:#fff;border-radius:var(--r2);padding:26px 20px;text-align:center;border:1.5px solid #EAF0F3;transition:transform .3s,box-shadow .3s}
+.qv:hover{transform:translateY(-5px);box-shadow:0 12px 36px rgba(0,0,0,.08)}
+.qv:nth-child(1){background:var(--teal-l);border-color:transparent}
+.qv:nth-child(4){background:var(--yellow-l);border-color:transparent}
+.qv-icon{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:1.4rem}
+.qv-icon i{font-size:1.4rem}
+.qv:nth-child(1) .qv-icon{background:rgba(19,184,204,.15);color:var(--teal-d)}
+.qv:nth-child(2) .qv-icon{background:var(--teal-l);color:var(--teal-d)}
+.qv:nth-child(3) .qv-icon{background:var(--green-l);color:#2a8548}
+.qv:nth-child(4) .qv-icon{background:rgba(255,201,60,.2);color:#9a7000}
+.qv:nth-child(5) .qv-icon{background:var(--coral-l);color:#c0432f}
+.qv h3{font-size:.9rem;font-weight:800;color:var(--dark);margin-bottom:7px;line-height:1.3}
+.qv p{font-size:.78rem;color:var(--gray);line-height:1.6}
+@media(max-width:1000px){.qs-values-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:540px){.qs-values-grid{grid-template-columns:1fr}}
+
+.qs-team{padding:60px 0 80px}
+.qs-team-title{text-align:center;margin-bottom:44px}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.team-card{background:#fff;border-radius:var(--r2);overflow:hidden;border:1.5px solid #EAF0F3;transition:transform .3s,box-shadow .3s}
+.team-card:hover{transform:translateY(-5px);box-shadow:0 12px 40px rgba(0,0,0,.09)}
+.team-photo{height:200px;display:flex;align-items:center;justify-content:center;font-size:4rem;font-weight:900;color:#fff;letter-spacing:-.02em}
+.team-photo-a{background:linear-gradient(135deg,var(--teal-d),var(--teal))}
+.team-photo-b{background:linear-gradient(135deg,#7c6dab,#a78bdb)}
+.team-photo-c{background:linear-gradient(135deg,#2a8548,var(--green))}
+.team-info{padding:22px 24px}
+.team-name{font-size:1rem;font-weight:900;color:var(--dark);margin-bottom:4px}
+.team-role{font-size:.78rem;font-weight:700;color:var(--teal-d);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+.team-desc{font-size:.82rem;color:var(--gray);line-height:1.6}
+@media(max-width:768px){.team-grid{grid-template-columns:1fr;max-width:360px;margin:0 auto}}
 
 /* ══════════════════════════════
    PAGE: CONTACTE
@@ -313,9 +341,9 @@ footer{background:#111820;padding:60px 0 26px}
     </div>
     <ul class="nav-links" id="navLinks">
       <li><a data-page="pg-inici"   onclick="goTo('pg-inici')">Inici</a></li>
+      <li><a data-page="pg-about"   onclick="goTo('pg-about')">Qui som</a></li>
       <li><a data-page="pg-serveis" onclick="goTo('pg-serveis')">Serveis</a></li>
       <li><a data-page="pg-plans"   onclick="goTo('pg-plans')">Plans de Salut</a></li>
-      <li><a data-page="pg-about"   onclick="goTo('pg-about')">Nosaltres</a></li>
       <li><a data-page="pg-contact" onclick="goTo('pg-contact')">Contacte</a></li>
     </ul>
     <button class="nav-cta" onclick="goTo('pg-contact')">Reserva cita →</button>
@@ -623,39 +651,96 @@ footer{background:#111820;padding:60px 0 26px}
 </div><!-- /pg-plans -->
 
 <!-- ═══════════════════════════════════════
-     PAGE: NOSALTRES
+     PAGE: QUI SOM
 ════════════════════════════════════════ -->
 <div id="pg-about" class="page">
   <div class="wrap">
-    <div class="about-grid" style="padding:60px 0 80px">
-      <div class="about-img">
-        <div class="about-blob"><i class="ph ph-paw-print"></i></div>
-        <div class="about-badge"><strong>2008</strong><span>Des de</span></div>
+
+    <!-- Intro -->
+    <div class="qs-intro">
+      <div class="qs-intro-img">
+        <div class="qs-blob"><i class="ph ph-paw-print"></i></div>
+        <div class="qs-badge"><strong>2001</strong><span>Des de</span></div>
       </div>
-      <div>
+      <div class="qs-intro-text">
         <span class="s-label">Qui som</span>
         <h2 class="s-title">Una clínica feta<br/>amb amor pels animals</h2>
-        <div class="about-text">
-          <p>Des de 2008, cuidem de les mascotes de Canovelles i del Vallès Oriental. Cada animal que arriba a Vovet rep una atenció personalitzada, propera i plena de professionalitat.</p>
-          <p>El nostre equip de veterinaris es forma contínuament per estar sempre al dia de les últimes tècniques i tractaments.</p>
-        </div>
-        <div class="about-feats">
-          <div class="af">
-            <div class="af-icon"><i class="ph ph-trophy"></i></div>
-            <div class="af-text"><strong>Clínica de referència al Vallès</strong><span>Reconeguts per la comunitat local com a primera opció</span></div>
-          </div>
-          <div class="af">
-            <div class="af-icon"><i class="ph ph-test-tube"></i></div>
-            <div class="af-text"><strong>Tecnologia pròpia in-house</strong><span>Laboratori, radiologia i ecografia per a diagnòstics immediats</span></div>
-          </div>
-          <div class="af">
-            <div class="af-icon"><i class="ph ph-handshake"></i></div>
-            <div class="af-text"><strong>Sempre al teu costat</strong><span>Atenció per WhatsApp i telèfon per a qualsevol dubte</span></div>
-          </div>
-        </div>
-        <button class="btn-main" onclick="goTo('pg-contact')"><i class="ph ph-calendar-check"></i> Concerta una visita</button>
+        <p>Vovet va obrir les portes a finals de 2001 amb una filosofia clara: oferir una atenció accessible, propera i personalitzada per a cada animal. Entenem que cada pacient és únic i mereix un tracte individual.</p>
+        <p>Tot i que la nostra especialitat principal és l'atenció de gossos i gats, al llarg dels anys hem ampliat els nostres serveis per atendre fures, conills, hàmsters, xinxilles, lloros, porcs i fins i tot ovelles.</p>
+        <p>El nostre equip es forma contínuament en les últimes tècniques i tractaments per oferir sempre el millor servei possible.</p>
+        <button class="btn-main" style="margin-top:12px" onclick="goTo('pg-contact')"><i class="ph ph-calendar-check"></i> Concerta una visita</button>
       </div>
     </div>
+
+    <!-- Valors -->
+    <div class="qs-values">
+      <div class="qs-values-title">
+        <span class="s-label">Per què Vovet</span>
+        <h2 class="s-title">El que ens fa diferents</h2>
+      </div>
+      <div class="qs-values-grid">
+        <div class="qv">
+          <div class="qv-icon"><i class="ph ph-user-circle"></i></div>
+          <h3>Atenció personalitzada</h3>
+          <p>Cada cas és tractat de manera individual, reconeixent la singularitat de cada animal.</p>
+        </div>
+        <div class="qv">
+          <div class="qv-icon"><i class="ph ph-scan"></i></div>
+          <h3>Equipament diagnòstic</h3>
+          <p>Radiografia digital, analítica de sang, equips quirúrgics i electrocardiografia pròpia.</p>
+        </div>
+        <div class="qv">
+          <div class="qv-icon"><i class="ph ph-map-pin"></i></div>
+          <h3>Proximitat i comoditat</h3>
+          <p>Situats a la Barriada Nova de Canovelles, amb aparcament gratuït i servei de visita a domicili.</p>
+        </div>
+        <div class="qv">
+          <div class="qv-icon"><i class="ph ph-heart"></i></div>
+          <h3>Passió pels animals</h3>
+          <p>Compromesos a promoure una vida saludable i feliç per a totes les mascotes.</p>
+        </div>
+        <div class="qv">
+          <div class="qv-icon"><i class="ph ph-handshake"></i></div>
+          <h3>Implicació social</h3>
+          <p>Col·laborem amb ajuntaments, protectores i associacions de protecció animal.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Equip -->
+    <div class="qs-team">
+      <div class="qs-team-title">
+        <span class="s-label">L'equip</span>
+        <h2 class="s-title">Els professionals<br/>que cuiden la teva mascota</h2>
+      </div>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-photo team-photo-a">JM</div>
+          <div class="team-info">
+            <div class="team-name">Jaume Miret</div>
+            <div class="team-role">Veterinari clínic · Director de Cirurgia</div>
+            <p class="team-desc">Especialista en cirurgia general i especialitzada. Responsable de les intervencions quirúrgiques i de la direcció mèdica de la clínica.</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo team-photo-b">AJ</div>
+          <div class="team-info">
+            <div class="team-name">Ana Jauregui</div>
+            <div class="team-role">Gestió i Administració</div>
+            <p class="team-desc">Responsable de la gestió i administració de la clínica. Garanteix que cada client rebi una atenció excel·lent des del primer contacte.</p>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-photo team-photo-c">IM</div>
+          <div class="team-info">
+            <div class="team-name">Isabel Mora</div>
+            <div class="team-role">Veterinària clínica · Cirurgia menor</div>
+            <p class="team-desc">Veterinària especialitzada en medicina interna i cirurgia menor. Tracta amb especial dedicació els animals més nerviossos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div><!-- /pg-about -->
 
