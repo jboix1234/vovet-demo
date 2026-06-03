@@ -238,8 +238,8 @@ footer{background:#111820;padding:60px 0 26px}
 #pg-about{background:var(--cream);padding-top:90px;min-height:100vh}
 .qs-intro{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;padding:56px 0 64px;border-bottom:1px solid rgba(0,0,0,.07)}
 .qs-intro-img{position:relative}
-.qs-blob{width:100%;aspect-ratio:1;border-radius:60% 40% 55% 45% / 50% 60% 40% 50%;background:var(--teal-l);display:flex;align-items:center;justify-content:center;animation:blob 8s ease-in-out infinite}
-.qs-blob i{font-size:5.5rem;color:var(--teal-d);opacity:.4}
+.qs-blob{width:100%;aspect-ratio:1;border-radius:60% 40% 55% 45% / 50% 60% 40% 50%;overflow:hidden;animation:blob 8s ease-in-out infinite}
+.qs-blob img{width:100%;height:100%;object-fit:cover;object-position:center}
 @keyframes blob{0%,100%{border-radius:60% 40% 55% 45% / 50% 60% 40% 50%}33%{border-radius:40% 60% 45% 55% / 60% 40% 55% 45%}66%{border-radius:55% 45% 60% 40% / 45% 55% 40% 60%}}
 .qs-badge{position:absolute;bottom:16px;right:-12px;background:var(--yellow);border-radius:16px;padding:12px 18px;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.1)}
 .qs-badge strong{display:block;font-size:1.6rem;font-weight:900;color:var(--dark);line-height:1}
@@ -659,7 +659,7 @@ footer{background:#111820;padding:60px 0 26px}
     <!-- Intro -->
     <div class="qs-intro">
       <div class="qs-intro-img">
-        <div class="qs-blob"><i class="ph ph-paw-print"></i></div>
+        <div class="qs-blob"><img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=800&q=80" alt="Mascotes Vovet"/></div>
         <div class="qs-badge"><strong>2001</strong><span>Des de</span></div>
       </div>
       <div class="qs-intro-text">
