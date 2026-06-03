@@ -15,7 +15,7 @@ html{scroll-behavior:smooth}
 body{font-family:'Nunito',sans-serif;background:#FFFBF5;color:#1C2B3A;overflow-x:hidden}
 
 :root{
-  --teal:#13B8CC;--teal-d:#0D98AA;--teal-l:#E5F8FA;--teal-mid:#C2EEF3;
+  --teal:#13B8CC;--teal-d:#0D98AA;--teal-l:#E5F8FA;
   --yellow:#FFC93C;--yellow-l:#FFF8E1;
   --green:#52C97A;--green-l:#EAFAF1;
   --coral:#FF7B6B;--coral-l:#FFF0EE;
@@ -27,15 +27,22 @@ body{font-family:'Nunito',sans-serif;background:#FFFBF5;color:#1C2B3A;overflow-x
 .wrap{max-width:1200px;margin:0 auto;padding:0 36px}
 @media(max-width:600px){.wrap{padding:0 20px}}
 
+/* ── PAGES ── */
+.page{display:none}
+.page.active{display:block;animation:fadeUp .4s cubic-bezier(.4,0,.2,1) both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
 /* ── NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:100}
 .nav-bar{margin:14px 32px;background:#fff;border-radius:50px;border:1px solid rgba(0,0,0,.08);box-shadow:0 2px 16px rgba(0,0,0,.07);padding:10px 18px;display:flex;align-items:center;justify-content:space-between;gap:16px;transition:box-shadow .3s}
 .nav-bar.stuck{box-shadow:0 6px 28px rgba(0,0,0,.12)}
+.nav-logo{cursor:pointer}
 .nav-logo img{height:46px;width:auto;mix-blend-mode:multiply;display:block}
 .nav-links{display:flex;align-items:center;gap:2px;list-style:none}
-.nav-links a{font-size:.82rem;font-weight:700;color:var(--mid);text-decoration:none;padding:7px 13px;border-radius:50px;transition:background .2s,color .2s}
+.nav-links a{font-size:.82rem;font-weight:700;color:var(--mid);text-decoration:none;padding:7px 13px;border-radius:50px;transition:background .2s,color .2s;cursor:pointer}
 .nav-links a:hover{background:var(--teal-l);color:var(--teal-d)}
-.nav-cta{font-size:.82rem;font-weight:800;background:var(--teal);color:#fff;padding:10px 22px;border-radius:50px;text-decoration:none;transition:background .25s,transform .2s;white-space:nowrap;flex-shrink:0}
+.nav-links a.active{background:var(--teal-l);color:var(--teal-d)}
+.nav-cta{font-size:.82rem;font-weight:800;background:var(--teal);color:#fff;padding:10px 22px;border-radius:50px;text-decoration:none;cursor:pointer;transition:background .25s,transform .2s;white-space:nowrap;flex-shrink:0;border:none;font-family:'Nunito',sans-serif}
 .nav-cta:hover{background:var(--teal-d);transform:scale(1.03)}
 .ham{display:none;flex-direction:column;gap:4.5px;cursor:pointer;padding:4px}
 .ham span{display:block;width:20px;height:2px;background:var(--dark);border-radius:2px;transition:.3s}
@@ -47,18 +54,35 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100}
   .nav-links{position:fixed;inset:0;background:var(--dark);flex-direction:column;align-items:center;justify-content:center;gap:6px;opacity:0;pointer-events:none;transition:opacity .3s;z-index:200}
   .nav-links.open{opacity:1;pointer-events:all}
   .nav-links a{font-size:1.5rem;color:rgba(255,255,255,.8);padding:12px 28px;border-radius:0}
-  .nav-links a:hover{background:transparent;color:var(--teal)}
+  .nav-links a:hover,.nav-links a.active{background:transparent;color:var(--teal)}
   .nav-cta{display:none}
   .nav-bar{padding:12px 18px}
 }
 
-/* ── HERO ── */
+/* ── BUTTONS ── */
+.btn-main{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:800;background:var(--teal);color:#fff;padding:15px 28px;border-radius:50px;text-decoration:none;cursor:pointer;transition:background .25s,transform .2s,box-shadow .2s;box-shadow:0 4px 16px rgba(19,184,204,.35);border:none;font-family:'Nunito',sans-serif}
+.btn-main:hover{background:var(--teal-d);transform:translateY(-2px);box-shadow:0 8px 24px rgba(19,184,204,.45)}
+.btn-main i{font-size:1rem}
+.btn-sec{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:700;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.3);color:#fff;padding:14px 24px;border-radius:50px;text-decoration:none;cursor:pointer;transition:all .2s;font-family:'Nunito',sans-serif}
+.btn-sec:hover{background:rgba(255,255,255,.2);transform:translateY(-2px)}
+.btn-sec i{font-size:1rem}
+
+/* ── SECTION LABELS ── */
+.s-label{display:block;font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-d);margin-bottom:10px}
+.s-title{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:900;line-height:1.1;letter-spacing:-.02em;color:var(--dark);margin-bottom:14px}
+.s-sub{font-size:.97rem;color:var(--gray);line-height:1.75}
+
+/* ══════════════════════════════
+   PAGE: INICI
+══════════════════════════════ */
+
+/* Hero */
 #hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:0}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
 .hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(100deg,rgba(15,25,35,.9) 0%,rgba(15,25,35,.75) 45%,rgba(15,25,35,.1) 100%)}
 #hero .wrap{display:grid;grid-template-columns:1fr 1fr;min-height:100vh;align-items:center}
-.hero-content{position:relative;z-index:1;padding:110px 0 80px;grid-column:1;text-align:left}
+.hero-content{position:relative;z-index:1;padding:110px 0 80px;grid-column:1}
 @media(max-width:768px){#hero .wrap{grid-template-columns:1fr}.hero-content{padding:100px 0 64px}}
 .hero-chip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.9);font-size:.75rem;font-weight:800;padding:8px 16px;border-radius:50px;margin-bottom:28px}
 .hero-chip i{font-size:.9rem;color:var(--teal)}
@@ -68,17 +92,11 @@ h1 .underlined{position:relative;display:inline-block}
 h1 .underlined::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:5px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8'%3E%3Cpath d='M0 4 Q15 0 30 4 Q45 8 60 4 Q75 0 90 4 Q105 8 120 4' fill='none' stroke='%23FFC93C' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x;background-size:60px 5px}
 .hero-desc{font-size:1.08rem;color:rgba(255,255,255,.72);line-height:1.78;max-width:500px;margin-bottom:36px}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px}
-.btn-main{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:800;background:var(--teal);color:#fff;padding:15px 28px;border-radius:50px;text-decoration:none;transition:background .25s,transform .2s,box-shadow .2s;box-shadow:0 4px 16px rgba(19,184,204,.35)}
-.btn-main:hover{background:var(--teal-d);transform:translateY(-2px);box-shadow:0 8px 24px rgba(19,184,204,.45)}
-.btn-main i,.btn-sec i{font-size:1rem}
-.btn-sec{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:700;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.3);color:#fff;padding:14px 24px;border-radius:50px;text-decoration:none;transition:all .2s}
-.btn-sec:hover{background:rgba(255,255,255,.2);transform:translateY(-2px)}
 .hero-trust{display:flex;gap:32px;flex-wrap:wrap;padding-top:36px;border-top:1px solid rgba(255,255,255,.15)}
 .trust-item .trust-val{font-size:1.6rem;font-weight:900;color:#fff;line-height:1}
 .trust-item .trust-lbl{font-size:.72rem;color:rgba(255,255,255,.55);margin-top:3px}
-@media(max-width:640px){.hero-content{padding:120px 0 70px}}
 
-/* ── WHY ── */
+/* Why */
 #why{padding:72px 0;background:var(--sand)}
 .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .why-card{background:#fff;border-radius:var(--r2);padding:28px 24px;transition:transform .3s,box-shadow .3s}
@@ -95,15 +113,59 @@ h1 .underlined::after{content:'';position:absolute;bottom:-4px;left:0;right:0;he
 @media(max-width:900px){.why-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:480px){.why-grid{grid-template-columns:1fr}}
 
-/* ── SECTION HEADERS ── */
-.s-label{display:block;font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-d);margin-bottom:10px}
-.s-title{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:900;line-height:1.1;letter-spacing:-.02em;color:var(--dark);margin-bottom:14px}
-.s-sub{font-size:.97rem;color:var(--gray);line-height:1.75}
+/* Stats */
+#stats{padding:88px 0;background:var(--teal)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);text-align:center}
+.st{padding:16px;border-right:1px solid rgba(255,255,255,.18)}
+.st:last-child{border-right:none}
+.st-num{font-size:clamp(2.6rem,5vw,4rem);font-weight:900;color:#fff;line-height:1;margin-bottom:8px;letter-spacing:-.02em}
+.st-lbl{font-size:.8rem;color:rgba(255,255,255,.65);font-weight:500;line-height:1.45}
+@media(max-width:640px){.stats-grid{grid-template-columns:1fr 1fr}.st:nth-child(2){border-right:none}.st:nth-child(3),.st:nth-child(4){border-top:1px solid rgba(255,255,255,.18)}}
 
-/* ── SERVICES ── */
-#services{padding:96px 0}
-.svc-top{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:52px;flex-wrap:wrap}
-.svc-top .s-sub{max-width:420px}
+/* Testimonials */
+#testi{padding:96px 0;background:var(--sand)}
+.testi-hdr{text-align:center;margin-bottom:52px}
+.testi-hdr .s-sub{max-width:480px;margin:0 auto}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.tc{background:#fff;border-radius:var(--r2);padding:28px 24px;transition:transform .3s,box-shadow .3s}
+.tc:hover{transform:translateY(-4px);box-shadow:0 10px 32px rgba(0,0,0,.08)}
+.tc-stars{display:flex;gap:3px;margin-bottom:14px;color:var(--yellow)}
+.tc-stars i{font-size:1rem}
+.tc-text{font-size:.88rem;color:var(--mid);line-height:1.72;margin-bottom:20px;font-style:italic}
+.tc-person{display:flex;align-items:center;gap:12px}
+.tc-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.82rem;color:#fff;flex-shrink:0}
+.av-a{background:var(--teal)}.av-b{background:var(--yellow);color:var(--dark)}.av-c{background:var(--green)}
+.tc-name{font-size:.86rem;font-weight:800;color:var(--dark)}
+.tc-role{font-size:.74rem;color:var(--gray)}
+@media(max-width:900px){.testi-grid{grid-template-columns:1fr;max-width:440px;margin:0 auto}}
+
+/* Footer */
+footer{background:#111820;padding:60px 0 26px}
+.footer-top{display:grid;grid-template-columns:1.8fr 1fr 1fr 1.4fr;gap:44px;margin-bottom:48px}
+.fbrand p{font-size:.82rem;color:rgba(255,255,255,.38);line-height:1.75;margin-bottom:20px}
+.fsocs{display:flex;gap:8px}
+.fsoc{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.4);text-decoration:none;transition:all .25s}
+.fsoc i{font-size:1rem}
+.fsoc:hover{background:var(--teal);color:#fff;transform:translateY(-2px)}
+.fcol h4{font-size:.64rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:14px}
+.fcol ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.fcol ul a{font-size:.82rem;color:rgba(255,255,255,.42);text-decoration:none;cursor:pointer;transition:color .2s}
+.fcol ul a:hover{color:var(--teal)}
+.fhours{display:flex;flex-direction:column;gap:7px}
+.fhr{display:flex;justify-content:space-between;gap:12px;font-size:.8rem}
+.fhr .d{color:rgba(255,255,255,.38)}.fhr .t{color:rgba(255,255,255,.68);font-weight:600}
+.footer-bot{border-top:1px solid rgba(255,255,255,.05);padding-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.footer-bot p,.footer-bot a{font-size:.73rem;color:rgba(255,255,255,.22);text-decoration:none}
+.footer-bot a:hover{color:var(--teal)}
+@media(max-width:900px){.footer-top{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.footer-top{grid-template-columns:1fr}.footer-bot{flex-direction:column;text-align:center}}
+
+/* ══════════════════════════════
+   PAGE: SERVEIS
+══════════════════════════════ */
+#pg-serveis{background:var(--cream);padding-top:90px;min-height:100vh}
+.pg-hero{padding:60px 0 48px}
+.pg-hero .s-title{font-size:clamp(2rem,4vw,3.2rem)}
 .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .svc{border-radius:var(--r2);padding:30px 26px;transition:transform .3s,box-shadow .3s}
 .svc:hover{transform:translateY(-5px);box-shadow:0 14px 40px rgba(0,0,0,.09)}
@@ -113,7 +175,7 @@ h1 .underlined::after{content:'';position:absolute;bottom:-4px;left:0;right:0;he
 .svc-coral{background:var(--coral-l);border:1.5px solid #FFCCB8}
 .svc-green{background:var(--green-l);border:1.5px solid #B6ECC6}
 .svc-sand{background:var(--sand);border:1.5px solid #E8DDD0}
-.svc-icon{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;font-size:1.4rem}
+.svc-icon{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
 .svc-icon i{font-size:1.5rem}
 .svc-white .svc-icon{background:var(--teal-l);color:var(--teal-d)}
 .svc-teal .svc-icon{background:rgba(255,255,255,.18);color:#fff}
@@ -128,34 +190,23 @@ h1 .underlined::after{content:'';position:absolute;bottom:-4px;left:0;right:0;he
 @media(max-width:900px){.svc-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:530px){.svc-grid{grid-template-columns:1fr}}
 
-/* ── STATS ── */
-#stats{padding:88px 0;background:var(--teal)}
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);text-align:center}
-.st{padding:16px;border-right:1px solid rgba(255,255,255,.18)}
-.st:last-child{border-right:none}
-.st-num{font-size:clamp(2.6rem,5vw,4rem);font-weight:900;color:#fff;line-height:1;margin-bottom:8px;letter-spacing:-.02em}
-.st-lbl{font-size:.8rem;color:rgba(255,255,255,.65);font-weight:500;line-height:1.45}
-@media(max-width:640px){.stats-grid{grid-template-columns:1fr 1fr}.st:nth-child(2){border-right:none}.st:nth-child(3),.st:nth-child(4){border-top:1px solid rgba(255,255,255,.18)}}
-
-/* ── PLANS ── */
-#plans{padding:96px 0;background:var(--sand)}
+/* ══════════════════════════════
+   PAGE: PLANS
+══════════════════════════════ */
+#pg-plans{background:var(--sand);padding-top:90px;min-height:100vh}
 .plans-hdr{text-align:center;margin-bottom:56px}
 .plans-hdr .s-sub{max-width:520px;margin:0 auto}
 .plans-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
 .plan{border-radius:var(--r2);padding:32px 26px;background:#fff;border:1.5px solid rgba(0,0,0,.07);transition:transform .3s,box-shadow .3s;position:relative}
 .plan:hover{transform:translateY(-5px);box-shadow:0 14px 44px rgba(0,0,0,.09)}
-/* Row 1: spans 2 cols each */
 .plan:nth-child(1){grid-column:span 2}
 .plan:nth-child(2){grid-column:span 2}
 .plan:nth-child(3){grid-column:span 2}
-/* Row 2: centered — 2 cards of 2 cols, padded with 1 col each side */
 .plan:nth-child(4){grid-column:2/span 2}
 .plan:nth-child(5){grid-column:4/span 2}
-/* Featured */
 .plan-pop{background:var(--dark);border-color:var(--dark)}
-.plan-pop:hover{transform:translateY(-5px)}
 .pop-tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--yellow);color:var(--dark);font-size:.68rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;padding:5px 16px;border-radius:50px;white-space:nowrap}
-.plan-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;font-size:1.3rem}
+.plan-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
 .plan-icon i{font-size:1.35rem}
 .plan .plan-icon{background:var(--teal-l);color:var(--teal-d)}
 .plan-pop .plan-icon{background:rgba(19,184,204,.18);color:var(--teal)}
@@ -167,29 +218,24 @@ h1 .underlined::after{content:'';position:absolute;bottom:-4px;left:0;right:0;he
 .plan ul li{display:flex;align-items:flex-start;gap:9px;font-size:.82rem;color:var(--mid);line-height:1.45}
 .plan-pop ul li{color:rgba(255,255,255,.72)}
 .plan ul li i{font-size:1rem;flex-shrink:0;margin-top:1px;color:var(--teal)}
-.plan-pop ul li i{color:var(--teal)}
 .plan-discounts{margin-top:4px;padding-top:14px;border-top:1px solid rgba(0,0,0,.07)}
 .plan-pop .plan-discounts{border-color:rgba(255,255,255,.1)}
 .plan-discounts-title{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--gray);margin-bottom:8px}
 .plan-pop .plan-discounts-title{color:rgba(255,255,255,.35)}
 .plan-discounts ul{margin-bottom:0;gap:7px}
 .plan-discounts ul li i{color:var(--yellow)}
-.plan-btn{display:block;text-align:center;font-size:.82rem;font-weight:800;padding:13px;border-radius:50px;text-decoration:none;transition:all .25s}
+.plan-btn{display:block;text-align:center;font-size:.82rem;font-weight:800;padding:13px;border-radius:50px;text-decoration:none;cursor:pointer;transition:all .25s;border:none;font-family:'Nunito',sans-serif;width:100%}
 .plan .plan-btn{background:var(--teal);color:#fff}
 .plan .plan-btn:hover{background:var(--teal-d)}
 .plan-pop .plan-btn{background:var(--teal);color:#fff}
 .plan-pop .plan-btn:hover{background:var(--teal-d)}
-@media(max-width:980px){
-  .plans-grid{grid-template-columns:1fr 1fr}
-  .plan:nth-child(1),.plan:nth-child(2),.plan:nth-child(3),.plan:nth-child(4),.plan:nth-child(5){grid-column:span 1}
-}
-@media(max-width:560px){
-  .plans-grid{grid-template-columns:1fr}
-  .plan:nth-child(1),.plan:nth-child(2),.plan:nth-child(3),.plan:nth-child(4),.plan:nth-child(5){grid-column:span 1}
-}
+@media(max-width:980px){.plans-grid{grid-template-columns:1fr 1fr}.plan:nth-child(1),.plan:nth-child(2),.plan:nth-child(3),.plan:nth-child(4),.plan:nth-child(5){grid-column:span 1}}
+@media(max-width:560px){.plans-grid{grid-template-columns:1fr}}
 
-/* ── ABOUT ── */
-#about{padding:96px 0;background:var(--cream)}
+/* ══════════════════════════════
+   PAGE: NOSALTRES
+══════════════════════════════ */
+#pg-about{background:var(--cream);padding-top:90px;min-height:100vh}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
 .about-img{position:relative}
 .about-blob{width:100%;aspect-ratio:1;border-radius:60% 40% 55% 45% / 50% 60% 40% 50%;background:var(--teal-l);display:flex;align-items:center;justify-content:center;animation:blob 8s ease-in-out infinite}
@@ -207,28 +253,11 @@ h1 .underlined::after{content:'';position:absolute;bottom:-4px;left:0;right:0;he
 .af-text span{font-size:.8rem;color:var(--gray)}
 @media(max-width:900px){.about-grid{grid-template-columns:1fr;gap:48px}.about-img{max-width:360px;margin:0 auto}.about-badge{right:0}}
 
-/* ── TESTIMONIALS ── */
-#testi{padding:96px 0;background:var(--sand)}
-.testi-hdr{text-align:center;margin-bottom:52px}
-.testi-hdr .s-sub{max-width:480px;margin:0 auto}
-.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.tc{background:#fff;border-radius:var(--r2);padding:28px 24px;transition:transform .3s,box-shadow .3s}
-.tc:hover{transform:translateY(-4px);box-shadow:0 10px 32px rgba(0,0,0,.08)}
-.tc-stars{display:flex;gap:3px;margin-bottom:14px;color:var(--yellow)}
-.tc-stars i{font-size:1rem}
-.tc-text{font-size:.88rem;color:var(--mid);line-height:1.72;margin-bottom:20px;font-style:italic}
-.tc-person{display:flex;align-items:center;gap:12px}
-.tc-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.82rem;color:#fff;flex-shrink:0}
-.av-a{background:var(--teal)}
-.av-b{background:var(--yellow);color:var(--dark)}
-.av-c{background:var(--green)}
-.tc-name{font-size:.86rem;font-weight:800;color:var(--dark)}
-.tc-role{font-size:.74rem;color:var(--gray)}
-@media(max-width:900px){.testi-grid{grid-template-columns:1fr;max-width:440px;margin:0 auto}}
-
-/* ── CONTACT ── */
-#contact{padding:96px 0;background:var(--dark)}
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+/* ══════════════════════════════
+   PAGE: CONTACTE
+══════════════════════════════ */
+#pg-contact{background:var(--dark);padding-top:90px;min-height:100vh}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;padding:60px 0}
 .contact-left h2{font-size:clamp(2rem,3.8vw,3rem);font-weight:900;letter-spacing:-.02em;line-height:1.1;color:#fff;margin-bottom:14px}
 .contact-left h2 em{font-style:normal;color:var(--teal)}
 .contact-left>p{font-size:.95rem;color:rgba(255,255,255,.48);line-height:1.75;margin-bottom:40px}
@@ -240,7 +269,6 @@ h1 .underlined::after{content:'';position:absolute;bottom:-4px;left:0;right:0;he
 .ci-val{font-size:.86rem;color:rgba(255,255,255,.72);line-height:1.55}
 .ci-val a{color:var(--teal);text-decoration:none;font-weight:700}
 .ci-val a:hover{color:#7de8f8}
-
 .form-box{background:var(--cream);border-radius:var(--r2);padding:40px 34px}
 .form-box h3{font-size:1.25rem;font-weight:900;color:var(--dark);margin-bottom:4px}
 .form-box>p{font-size:.8rem;color:var(--gray);margin-bottom:26px}
@@ -263,29 +291,7 @@ h1 .underlined::after{content:'';position:absolute;bottom:-4px;left:0;right:0;he
 .form-ok p{font-size:.85rem;color:var(--gray)}
 @media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:52px}}
 @media(max-width:560px){.frow{grid-template-columns:1fr}.form-box{padding:26px 18px}}
-
-/* ── FOOTER ── */
-footer{background:#111820;padding:60px 0 26px}
-.footer-top{display:grid;grid-template-columns:1.8fr 1fr 1fr 1.4fr;gap:44px;margin-bottom:48px}
-.fbrand-logo{height:32px;display:block;margin-bottom:14px;mix-blend-mode:luminosity;filter:brightness(0) invert(1)}
-.fbrand p{font-size:.82rem;color:rgba(255,255,255,.38);line-height:1.75;margin-bottom:20px}
-.fsocs{display:flex;gap:8px}
-.fsoc{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.4);text-decoration:none;transition:all .25s}
-.fsoc i{font-size:1rem}
-.fsoc:hover{background:var(--teal);color:#fff;transform:translateY(-2px)}
-.fcol h4{font-size:.64rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:14px}
-.fcol ul{list-style:none;display:flex;flex-direction:column;gap:9px}
-.fcol ul a{font-size:.82rem;color:rgba(255,255,255,.42);text-decoration:none;transition:color .2s}
-.fcol ul a:hover{color:var(--teal)}
-.fhours{display:flex;flex-direction:column;gap:7px}
-.fhr{display:flex;justify-content:space-between;gap:12px;font-size:.8rem}
-.fhr .d{color:rgba(255,255,255,.38)}
-.fhr .t{color:rgba(255,255,255,.68);font-weight:600}
-.footer-bot{border-top:1px solid rgba(255,255,255,.05);padding-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
-.footer-bot p,.footer-bot a{font-size:.73rem;color:rgba(255,255,255,.22);text-decoration:none}
-.footer-bot a:hover{color:var(--teal)}
-@media(max-width:900px){.footer-top{grid-template-columns:1fr 1fr}}
-@media(max-width:480px){.footer-top{grid-template-columns:1fr}.footer-bot{flex-direction:column;text-align:center}}
+#map{line-height:0}
 
 /* ── WhatsApp ── */
 .wa-fab{position:fixed;bottom:26px;right:26px;z-index:90;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 18px rgba(37,211,102,.45);transition:transform .25s,box-shadow .25s;animation:pop .5s 1s cubic-bezier(.34,1.56,.64,1) both}
@@ -295,12 +301,6 @@ footer{background:#111820;padding:60px 0 26px}
 .wa-tip::after{content:'';position:absolute;left:100%;top:50%;transform:translateY(-50%);border:5px solid transparent;border-left-color:var(--dark)}
 .wa-fab:hover .wa-tip{opacity:1}
 @keyframes pop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
-
-/* ── Scroll reveal ── */
-[data-r]{opacity:0;transform:translateY(20px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
-[data-r].in{opacity:1;transform:none}
-[data-d="1"]{transition-delay:.1s}[data-d="2"]{transition-delay:.18s}
-[data-d="3"]{transition-delay:.26s}[data-d="4"]{transition-delay:.34s}
 </style>
 </head>
 <body>
@@ -308,146 +308,228 @@ footer{background:#111820;padding:60px 0 26px}
 <!-- NAV -->
 <nav id="nav">
   <div class="nav-bar" id="navBar">
-    <a href="#hero" class="nav-logo"><img src="cropped-logo_vovet.jpg" alt="Vovet Serveis Veterinaris"/></a>
+    <div class="nav-logo" onclick="goTo('pg-inici')">
+      <img src="cropped-logo_vovet.jpg" alt="Vovet Serveis Veterinaris"/>
+    </div>
     <ul class="nav-links" id="navLinks">
-      <li><a href="#hero">Inici</a></li>
-      <li><a href="#services">Serveis</a></li>
-      <li><a href="#plans">Plans de Salut</a></li>
-      <li><a href="#about">Nosaltres</a></li>
-      <li><a href="#contact">Contacte</a></li>
+      <li><a data-page="pg-inici"   onclick="goTo('pg-inici')">Inici</a></li>
+      <li><a data-page="pg-serveis" onclick="goTo('pg-serveis')">Serveis</a></li>
+      <li><a data-page="pg-plans"   onclick="goTo('pg-plans')">Plans de Salut</a></li>
+      <li><a data-page="pg-about"   onclick="goTo('pg-about')">Nosaltres</a></li>
+      <li><a data-page="pg-contact" onclick="goTo('pg-contact')">Contacte</a></li>
     </ul>
-    <a href="#contact" class="nav-cta">Reserva cita →</a>
+    <button class="nav-cta" onclick="goTo('pg-contact')">Reserva cita →</button>
     <div class="ham" id="ham" onclick="toggleNav()"><span></span><span></span><span></span></div>
   </div>
 </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-bg">
-    <img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=1920&q=80" alt="Gossos i gats feliços"/>
-  </div>
-  <div class="wrap">
-    <div class="hero-content">
-      <div class="hero-chip" data-r>
-        <i class="ph ph-check-circle-fill"></i>
-        Clínica veterinària a Canovelles · Oberta des de 2008
-      </div>
-      <h1 data-r data-d="1">
-        El teu millor<br/>
-        <span class="accent">amic mereix</span><br/>
-        la millor <span class="underlined">atenció.</span>
-      </h1>
-      <p class="hero-desc" data-r data-d="2">Cuidem la teva mascota com si fos la nostra. Medicina interna, cirurgia especialitzada i diagnòstic avançat per a gossos, gats i animals exòtics.</p>
-      <div class="hero-btns" data-r data-d="3">
-        <a href="#contact" class="btn-main"><i class="ph ph-calendar-check"></i> Reserva la teva cita</a>
-        <a href="tel:938495070" class="btn-sec"><i class="ph ph-phone"></i> 938 495 070</a>
-      </div>
-      <div class="hero-trust" data-r data-d="4">
-        <div class="trust-item"><div class="trust-val">+15</div><div class="trust-lbl">Anys d'experiència</div></div>
-        <div class="trust-item"><div class="trust-val">+5.000</div><div class="trust-lbl">Pacients atesos</div></div>
-        <div class="trust-item"><div class="trust-val" style="color:var(--teal)">4.5★</div><div class="trust-lbl">A Google Maps</div></div>
+<!-- ═══════════════════════════════════════
+     PAGE: INICI
+════════════════════════════════════════ -->
+<div id="pg-inici" class="page">
+
+  <section id="hero">
+    <div class="hero-bg">
+      <img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=1920&q=80" alt="Gossos i gats feliços"/>
+    </div>
+    <div class="wrap">
+      <div class="hero-content">
+        <div class="hero-chip">
+          <i class="ph ph-check-circle-fill"></i>
+          Clínica veterinària a Canovelles · Oberta des de 2008
+        </div>
+        <h1>
+          El teu millor<br/>
+          <span class="accent">amic mereix</span><br/>
+          la millor <span class="underlined">atenció.</span>
+        </h1>
+        <p class="hero-desc">Cuidem la teva mascota com si fos la nostra. Medicina interna, cirurgia especialitzada i diagnòstic avançat per a gossos, gats i animals exòtics.</p>
+        <div class="hero-btns">
+          <button class="btn-main" onclick="goTo('pg-contact')"><i class="ph ph-calendar-check"></i> Reserva la teva cita</button>
+          <a href="tel:938495070" class="btn-sec"><i class="ph ph-phone"></i> 938 495 070</a>
+        </div>
+        <div class="hero-trust">
+          <div class="trust-item"><div class="trust-val">+15</div><div class="trust-lbl">Anys d'experiència</div></div>
+          <div class="trust-item"><div class="trust-val">+5.000</div><div class="trust-lbl">Pacients atesos</div></div>
+          <div class="trust-item"><div class="trust-val" style="color:var(--teal)">4.5★</div><div class="trust-lbl">A Google Maps</div></div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- WHY -->
-<section id="why">
-  <div class="wrap">
-    <div class="why-grid">
-      <div class="why-card" data-r>
-        <div class="why-icon"><i class="ph ph-first-aid"></i></div>
-        <h3>Equipament d'última generació</h3>
-        <p>Radiografia digital, ecògrafs i laboratori propi per a diagnòstics ràpids i precisos.</p>
-      </div>
-      <div class="why-card" data-r data-d="1">
-        <div class="why-icon"><i class="ph ph-heart"></i></div>
-        <h3>Tracte proper i de confiança</h3>
-        <p>Tractem cada mascota com un membre de la família. Empatia en cada visita.</p>
-      </div>
-      <div class="why-card" data-r data-d="2">
-        <div class="why-icon"><i class="ph ph-graduation-cap"></i></div>
-        <h3>Equip especialitzat</h3>
-        <p>Professionals amb formació continuada en les últimes tècniques veterinàries.</p>
-      </div>
-      <div class="why-card" data-r data-d="3">
-        <div class="why-icon"><i class="ph ph-chat-circle-dots"></i></div>
-        <h3>Sempre disponibles</h3>
-        <p>Atenció per WhatsApp i telèfon per a qualsevol dubte urgent.</p>
+  <section id="why">
+    <div class="wrap">
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon"><i class="ph ph-first-aid"></i></div>
+          <h3>Equipament d'última generació</h3>
+          <p>Radiografia digital, ecògrafs i laboratori propi per a diagnòstics ràpids i precisos.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="ph ph-heart"></i></div>
+          <h3>Tracte proper i de confiança</h3>
+          <p>Tractem cada mascota com un membre de la família. Empatia en cada visita.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="ph ph-graduation-cap"></i></div>
+          <h3>Equip especialitzat</h3>
+          <p>Professionals amb formació continuada en les últimes tècniques veterinàries.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon"><i class="ph ph-chat-circle-dots"></i></div>
+          <h3>Sempre disponibles</h3>
+          <p>Atenció per WhatsApp i telèfon per a qualsevol dubte urgent.</p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- SERVICES -->
-<section id="services">
-  <div class="wrap">
-    <div class="svc-top" data-r>
-      <div>
-        <span class="s-label">Els nostres serveis</span>
-        <h2 class="s-title">Tot el que necessita<br/>la teva mascota</h2>
+  <section id="stats">
+    <div class="wrap">
+      <div class="stats-grid">
+        <div class="st"><div class="st-num">+15</div><div class="st-lbl">Anys cuidant<br/>mascotes</div></div>
+        <div class="st"><div class="st-num">+5k</div><div class="st-lbl">Pacients<br/>atesos</div></div>
+        <div class="st"><div class="st-num">98%</div><div class="st-lbl">Clients que<br/>ens recomanen</div></div>
+        <div class="st"><div class="st-num">4.5★</div><div class="st-lbl">Valoració<br/>Google Maps</div></div>
       </div>
+    </div>
+  </section>
+
+  <section id="testi">
+    <div class="wrap">
+      <div class="testi-hdr">
+        <span class="s-label">Opinions reals</span>
+        <h2 class="s-title">El que diuen les famílies<br/>dels nostres pacients</h2>
+        <p class="s-sub">Més de 5.000 famílies confien en nosaltres per cuidar les seves mascotes.</p>
+      </div>
+      <div class="testi-grid">
+        <div class="tc">
+          <div class="tc-stars"><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i></div>
+          <p class="tc-text">"Portem el nostre gos a Vovet des que era cadell. L'equip és increïble — professionals, empàtics i sempre disposats a explicar-te tot. 100% recomanable."</p>
+          <div class="tc-person"><div class="tc-av av-a">MR</div><div><div class="tc-name">Maria Rodríguez</div><div class="tc-role">Propietària d'en Max, gos</div></div></div>
+        </div>
+        <div class="tc">
+          <div class="tc-stars"><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i></div>
+          <p class="tc-text">"La nostra gata va tenir una urgència i ens van atendre ràpidament. Molt professionals i empàtics. Les instal·lacions estan immaculades."</p>
+          <div class="tc-person"><div class="tc-av av-b">JP</div><div><div class="tc-name">Jordi Puig</div><div class="tc-role">Propietari de la Mia, gat</div></div></div>
+        </div>
+        <div class="tc">
+          <div class="tc-stars"><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i></div>
+          <p class="tc-text">"El pla de salut val molt la pena. Tenim tot controlat durant tot l'any i el preu és molt raonable. L'equip és fantàstic i molt proper."</p>
+          <div class="tc-person"><div class="tc-av av-c">AS</div><div><div class="tc-name">Anna Solà</div><div class="tc-role">Família amb 2 gossos</div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-top">
+        <div class="fbrand">
+          <img src="cropped-logo_vovet.jpg" alt="Vovet" style="height:32px;display:block;margin-bottom:14px;filter:brightness(0) invert(1)"/>
+          <p>Clínica veterinària de referència al Vallès Oriental. Cuidem els teus animals amb passió i professionalitat des de 2008.</p>
+          <div class="fsocs">
+            <a class="fsoc" href="#"><i class="ph ph-facebook-logo"></i></a>
+            <a class="fsoc" href="#"><i class="ph ph-instagram-logo"></i></a>
+            <a class="fsoc" href="https://wa.me/34672377208"><i class="ph ph-whatsapp-logo"></i></a>
+          </div>
+        </div>
+        <div class="fcol">
+          <h4>Serveis</h4>
+          <ul>
+            <li><a onclick="goTo('pg-serveis')">Consulta Felina</a></li>
+            <li><a onclick="goTo('pg-serveis')">Medicina Interna</a></li>
+            <li><a onclick="goTo('pg-serveis')">Cirurgia</a></li>
+            <li><a onclick="goTo('pg-serveis')">Diagnòstic per Imatge</a></li>
+            <li><a onclick="goTo('pg-serveis')">Alimentació</a></li>
+          </ul>
+        </div>
+        <div class="fcol">
+          <h4>Clínica</h4>
+          <ul>
+            <li><a onclick="goTo('pg-about')">Qui som</a></li>
+            <li><a onclick="goTo('pg-plans')">Plans de Salut</a></li>
+            <li><a onclick="goTo('pg-contact')">Reservar cita</a></li>
+            <li><a href="#">Avís Legal</a></li>
+            <li><a href="#">Privacitat</a></li>
+          </ul>
+        </div>
+        <div class="fcol">
+          <h4>Horaris</h4>
+          <div class="fhours">
+            <div class="fhr"><span class="d">Dll – Dijous</span><span class="t">10:00 – 19:00</span></div>
+            <div class="fhr"><span class="d">Divendres</span><span class="t">10:00 – 14:00</span></div>
+            <div class="fhr"><span class="d">Dissabte</span><span class="t">Tancat</span></div>
+            <div class="fhr"><span class="d">Diumenge</span><span class="t">Tancat</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bot">
+        <p>© 2025 Vovet Serveis Veterinaris S.L. Tots els drets reservats.</p>
+        <p><a href="#">Avís Legal</a> &nbsp;·&nbsp; <a href="#">Privacitat</a> &nbsp;·&nbsp; <a href="#">Cookies</a></p>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- /pg-inici -->
+
+<!-- ═══════════════════════════════════════
+     PAGE: SERVEIS
+════════════════════════════════════════ -->
+<div id="pg-serveis" class="page">
+  <div class="wrap">
+    <div class="pg-hero">
+      <span class="s-label">Els nostres serveis</span>
+      <h2 class="s-title">Tot el que necessita<br/>la teva mascota</h2>
       <p class="s-sub">Atenció integral amb professionals especialitzats i tecnologia avançada per a tota mena d'animals.</p>
     </div>
-    <div class="svc-grid">
-      <div class="svc svc-white" data-r>
+    <div class="svc-grid" style="padding-bottom:80px">
+      <div class="svc svc-white">
         <div class="svc-icon"><i class="ph ph-cat"></i></div>
         <h3>Consulta Felina</h3>
         <p>Amb un espai propi adaptat a les seves necessitats, els gats es troben més a gust durant la visita.</p>
       </div>
-      <div class="svc svc-teal" data-r data-d="1">
+      <div class="svc svc-teal">
         <div class="svc-icon"><i class="ph ph-stethoscope"></i></div>
         <h3>Medicina Interna</h3>
         <p>Atenció general i especialitzada de gossos, gats i petits mamífers amb seguiment personalitzat.</p>
       </div>
-      <div class="svc svc-yellow" data-r data-d="2">
+      <div class="svc svc-yellow">
         <div class="svc-icon"><i class="ph ph-scissors"></i></div>
         <h3>Servei de Cirurgia</h3>
         <p>Quiròfan equipat amb tot l'instrumental necessari per al més ampli ventall d'intervencions.</p>
       </div>
-      <div class="svc svc-coral" data-r>
+      <div class="svc svc-coral">
         <div class="svc-icon"><i class="ph ph-flask"></i></div>
         <h3>Diagnòstic Laboratorial</h3>
         <p>Analitzadors hematològics i bioquímics propis per realitzar un ampli ventall de proves in situ.</p>
       </div>
-      <div class="svc svc-green" data-r data-d="1">
+      <div class="svc svc-green">
         <div class="svc-icon"><i class="ph ph-scan"></i></div>
         <h3>Diagnòstic per Imatge</h3>
         <p>Aparells de radiodiagnòstic d'última generació i ecocardiografia per a diagnòstics precisos.</p>
       </div>
-      <div class="svc svc-sand" data-r data-d="2">
+      <div class="svc svc-sand">
         <div class="svc-icon"><i class="ph ph-bowl-food"></i></div>
         <h3>Alimentació</h3>
         <p>Alimentació especialitzada per a gossos, gats i altres complements nutricionals que puguis necessitar.</p>
       </div>
     </div>
   </div>
-</section>
+</div><!-- /pg-serveis -->
 
-<!-- STATS -->
-<section id="stats">
+<!-- ═══════════════════════════════════════
+     PAGE: PLANS
+════════════════════════════════════════ -->
+<div id="pg-plans" class="page">
   <div class="wrap">
-    <div class="stats-grid">
-      <div class="st" data-r><div class="st-num">+15</div><div class="st-lbl">Anys cuidant<br/>mascotes</div></div>
-      <div class="st" data-r data-d="1"><div class="st-num">+5k</div><div class="st-lbl">Pacients<br/>atesos</div></div>
-      <div class="st" data-r data-d="2"><div class="st-num">98%</div><div class="st-lbl">Clients que<br/>ens recomanen</div></div>
-      <div class="st" data-r data-d="3"><div class="st-num">4.5★</div><div class="st-lbl">Valoració<br/>Google Maps</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- PLANS -->
-<section id="plans">
-  <div class="wrap">
-    <div class="plans-hdr" data-r>
+    <div class="plans-hdr pg-hero">
       <span class="s-label">Plans de Salut</span>
       <h2 class="s-title">Cuida-la tot l'any</h2>
       <p class="s-sub">Subscriu-te al pla adequat per a la teva mascota i garanteix la millor atenció preventiva amb avantatges exclusius.</p>
     </div>
-    <div class="plans-grid">
-
-      <!-- Cadell Gos -->
-      <div class="plan" data-r data-d="1">
+    <div class="plans-grid" style="padding-bottom:80px">
+      <div class="plan">
         <div class="plan-icon"><i class="ph ph-dog"></i></div>
         <div class="plan-name">Pla Cadell Gos</div>
         <p class="plan-desc">Per als gossos en els seus primers mesos de vida</p>
@@ -460,16 +542,11 @@ footer{background:#111820;padding:60px 0 26px}
         </ul>
         <div class="plan-discounts">
           <div class="plan-discounts-title">Descomptes inclosos</div>
-          <ul>
-            <li><i class="ph ph-tag-fill"></i> 25% esterilització · 20% dental · 5% alimentació</li>
-          </ul>
-        </div>
-        <br/>
-        <a href="#contact" class="plan-btn">Més informació</a>
+          <ul><li><i class="ph ph-tag-fill"></i> 25% esterilització · 20% dental · 5% alimentació</li></ul>
+        </div><br/>
+        <button class="plan-btn" onclick="goTo('pg-contact')">Més informació</button>
       </div>
-
-      <!-- Pla Gatet -->
-      <div class="plan" data-r data-d="2">
+      <div class="plan">
         <div class="plan-icon"><i class="ph ph-cat"></i></div>
         <div class="plan-name">Pla Gatet</div>
         <p class="plan-desc">Per als gats en els seus primers mesos de vida</p>
@@ -482,16 +559,11 @@ footer{background:#111820;padding:60px 0 26px}
         </ul>
         <div class="plan-discounts">
           <div class="plan-discounts-title">Descomptes inclosos</div>
-          <ul>
-            <li><i class="ph ph-tag-fill"></i> 25% esterilització · 20% dental · 5% alimentació</li>
-          </ul>
-        </div>
-        <br/>
-        <a href="#contact" class="plan-btn">Més informació</a>
+          <ul><li><i class="ph ph-tag-fill"></i> 25% esterilització · 20% dental · 5% alimentació</li></ul>
+        </div><br/>
+        <button class="plan-btn" onclick="goTo('pg-contact')">Més informació</button>
       </div>
-
-      <!-- Pla Adult Gos (featured) -->
-      <div class="plan plan-pop" data-r data-d="3">
+      <div class="plan plan-pop">
         <div class="pop-tag">Més complet</div>
         <div class="plan-icon"><i class="ph ph-paw-print"></i></div>
         <div class="plan-name">Pla Adult Gos</div>
@@ -502,20 +574,15 @@ footer{background:#111820;padding:60px 0 26px}
           <li><i class="ph ph-check-circle-fill"></i> Analítica de sang bàsica</li>
           <li><i class="ph ph-check-circle-fill"></i> Anàlisi d'orina i coprologia</li>
           <li><i class="ph ph-check-circle-fill"></i> Test Leishmania inclòs</li>
-          <li><i class="ph ph-check-circle-fill"></i> Revisions veterinàries semestrals</li>
+          <li><i class="ph ph-check-circle-fill"></i> Revisions semestrals</li>
         </ul>
         <div class="plan-discounts">
           <div class="plan-discounts-title">Descomptes inclosos</div>
-          <ul>
-            <li><i class="ph ph-tag-fill"></i> 25% esterilització · 20% dental · 5% alimentació</li>
-          </ul>
-        </div>
-        <br/>
-        <a href="#contact" class="plan-btn">Més informació</a>
+          <ul><li><i class="ph ph-tag-fill"></i> 25% esterilització · 20% dental · 5% alimentació</li></ul>
+        </div><br/>
+        <button class="plan-btn" onclick="goTo('pg-contact')">Més informació</button>
       </div>
-
-      <!-- Pla Adult Gat -->
-      <div class="plan" data-r data-d="2">
+      <div class="plan">
         <div class="plan-icon"><i class="ph ph-cat"></i></div>
         <div class="plan-name">Pla Adult Gat</div>
         <p class="plan-desc">Protecció completa per al teu gat adult</p>
@@ -525,58 +592,53 @@ footer{background:#111820;padding:60px 0 26px}
           <li><i class="ph ph-check-circle-fill"></i> Analítica de sang bàsica</li>
           <li><i class="ph ph-check-circle-fill"></i> Anàlisi d'orina i coprologia</li>
           <li><i class="ph ph-check-circle-fill"></i> Test FelV / FIV inclòs</li>
-          <li><i class="ph ph-check-circle-fill"></i> Revisions veterinàries semestrals</li>
+          <li><i class="ph ph-check-circle-fill"></i> Revisions semestrals</li>
         </ul>
         <div class="plan-discounts">
           <div class="plan-discounts-title">Descomptes inclosos</div>
-          <ul>
-            <li><i class="ph ph-tag-fill"></i> 25% esterilització · 20% dental · 5% alimentació</li>
-          </ul>
-        </div>
-        <br/>
-        <a href="#contact" class="plan-btn">Més informació</a>
+          <ul><li><i class="ph ph-tag-fill"></i> 25% esterilització · 20% dental · 5% alimentació</li></ul>
+        </div><br/>
+        <button class="plan-btn" onclick="goTo('pg-contact')">Més informació</button>
       </div>
-
-      <!-- Pla Geriàtric -->
-      <div class="plan" data-r data-d="3">
+      <div class="plan">
         <div class="plan-icon"><i class="ph ph-heartbeat"></i></div>
         <div class="plan-name">Pla Geriàtric</div>
-        <p class="plan-desc">Atenció especialitzada per a mascotes de més de 7 anys</p>
+        <p class="plan-desc">Per a mascotes de més de 7 anys</p>
         <ul>
           <li><i class="ph ph-check-circle-fill"></i> Vacunació anual completa</li>
           <li><i class="ph ph-check-circle-fill"></i> Desparasitació interna (x2/any)</li>
           <li><i class="ph ph-check-circle-fill"></i> Analítica de sang completa</li>
           <li><i class="ph ph-check-circle-fill"></i> Anàlisi d'orina completa</li>
           <li><i class="ph ph-check-circle-fill"></i> Electrocardiograma inclòs</li>
-          <li><i class="ph ph-check-circle-fill"></i> Revisions veterinàries trimestrals</li>
+          <li><i class="ph ph-check-circle-fill"></i> Revisions trimestrals</li>
         </ul>
         <div class="plan-discounts">
           <div class="plan-discounts-title">Descomptes inclosos</div>
-          <ul>
-            <li><i class="ph ph-tag-fill"></i> 25% esterilització · 20% dental · 5% alimentació</li>
-          </ul>
-        </div>
-        <br/>
-        <a href="#contact" class="plan-btn">Més informació</a>
+          <ul><li><i class="ph ph-tag-fill"></i> 25% esterilització · 20% dental · 5% alimentació</li></ul>
+        </div><br/>
+        <button class="plan-btn" onclick="goTo('pg-contact')">Més informació</button>
       </div>
-
     </div>
   </div>
-</section>
+</div><!-- /pg-plans -->
 
-<!-- ABOUT -->
-<section id="about">
+<!-- ═══════════════════════════════════════
+     PAGE: NOSALTRES
+════════════════════════════════════════ -->
+<div id="pg-about" class="page">
   <div class="wrap">
-    <div class="about-grid">
-      <div class="about-img" data-r>
+    <div class="about-grid" style="padding:60px 0 80px">
+      <div class="about-img">
         <div class="about-blob"><i class="ph ph-paw-print"></i></div>
         <div class="about-badge"><strong>2008</strong><span>Des de</span></div>
       </div>
-      <div data-r data-d="1">
+      <div>
         <span class="s-label">Qui som</span>
         <h2 class="s-title">Una clínica feta<br/>amb amor pels animals</h2>
-        <p class="about-text">Des de 2008, cuidem de les mascotes de Canovelles i del Vallès Oriental. Cada animal que arriba a Vovet rep una atenció personalitzada, propera i plena de professionalitat.</p>
-        <p class="about-text">El nostre equip de veterinaris es forma contínuament per estar sempre al dia de les últimes tècniques i tractaments.</p>
+        <div class="about-text">
+          <p>Des de 2008, cuidem de les mascotes de Canovelles i del Vallès Oriental. Cada animal que arriba a Vovet rep una atenció personalitzada, propera i plena de professionalitat.</p>
+          <p>El nostre equip de veterinaris es forma contínuament per estar sempre al dia de les últimes tècniques i tractaments.</p>
+        </div>
         <div class="about-feats">
           <div class="af">
             <div class="af-icon"><i class="ph ph-trophy"></i></div>
@@ -591,86 +653,30 @@ footer{background:#111820;padding:60px 0 26px}
             <div class="af-text"><strong>Sempre al teu costat</strong><span>Atenció per WhatsApp i telèfon per a qualsevol dubte</span></div>
           </div>
         </div>
-        <a href="#contact" class="btn-main"><i class="ph ph-calendar-check"></i> Concerta una visita</a>
+        <button class="btn-main" onclick="goTo('pg-contact')"><i class="ph ph-calendar-check"></i> Concerta una visita</button>
       </div>
     </div>
   </div>
-</section>
+</div><!-- /pg-about -->
 
-<!-- TESTIMONIALS -->
-<section id="testi">
-  <div class="wrap">
-    <div class="testi-hdr" data-r>
-      <span class="s-label">Opinions reals</span>
-      <h2 class="s-title">El que diuen les famílies<br/>dels nostres pacients</h2>
-      <p class="s-sub">Més de 5.000 famílies confien en nosaltres per cuidar les seves mascotes.</p>
-    </div>
-    <div class="testi-grid">
-      <div class="tc" data-r>
-        <div class="tc-stars">
-          <i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i>
-        </div>
-        <p class="tc-text">"Portem el nostre gos a Vovet des que era cadell. L'equip és increïble — professionals, empàtics i sempre disposats a explicar-te tot. 100% recomanable."</p>
-        <div class="tc-person">
-          <div class="tc-av av-a">MR</div>
-          <div><div class="tc-name">Maria Rodríguez</div><div class="tc-role">Propietària d'en Max, gos</div></div>
-        </div>
-      </div>
-      <div class="tc" data-r data-d="1">
-        <div class="tc-stars">
-          <i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i>
-        </div>
-        <p class="tc-text">"La nostra gata va tenir una urgència i ens van atendre ràpidament. Molt professionals i empàtics. Les instal·lacions estan immaculades."</p>
-        <div class="tc-person">
-          <div class="tc-av av-b">JP</div>
-          <div><div class="tc-name">Jordi Puig</div><div class="tc-role">Propietari de la Mia, gat</div></div>
-        </div>
-      </div>
-      <div class="tc" data-r data-d="2">
-        <div class="tc-stars">
-          <i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i>
-        </div>
-        <p class="tc-text">"El pla de salut val molt la pena. Tenim tot controlat durant tot l'any i el preu és molt raonable. L'equip és fantàstic i molt proper."</p>
-        <div class="tc-person">
-          <div class="tc-av av-c">AS</div>
-          <div><div class="tc-name">Anna Solà</div><div class="tc-role">Família amb 2 gossos</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
+<!-- ═══════════════════════════════════════
+     PAGE: CONTACTE
+════════════════════════════════════════ -->
+<div id="pg-contact" class="page">
   <div class="wrap">
     <div class="contact-grid">
-      <div class="contact-left" data-r>
+      <div class="contact-left">
         <h2>Estem aquí<br/>per <em>ajudar-te</em></h2>
         <p>Reserva la teva cita o contacta'ns per qualsevol dubte. Et respondrem el més aviat possible.</p>
         <div class="ci-list">
-          <div class="ci">
-            <div class="ci-ic"><i class="ph ph-map-pin"></i></div>
-            <div><div class="ci-lbl">Adreça</div><div class="ci-val">C/ Isidre Duran, 2 · 08420 Canovelles (Barcelona)</div></div>
-          </div>
-          <div class="ci">
-            <div class="ci-ic"><i class="ph ph-phone"></i></div>
-            <div><div class="ci-lbl">Telèfon</div><div class="ci-val"><a href="tel:938495070">938 49 50 70</a></div></div>
-          </div>
-          <div class="ci">
-            <div class="ci-ic"><i class="ph ph-whatsapp-logo"></i></div>
-            <div><div class="ci-lbl">WhatsApp</div><div class="ci-val"><a href="https://wa.me/34672377208">672 377 208</a></div></div>
-          </div>
-          <div class="ci">
-            <div class="ci-ic"><i class="ph ph-envelope-simple"></i></div>
-            <div><div class="ci-lbl">Email</div><div class="ci-val"><a href="mailto:info@vovet.es">info@vovet.es</a></div></div>
-          </div>
-          <div class="ci">
-            <div class="ci-ic"><i class="ph ph-clock"></i></div>
-            <div><div class="ci-lbl">Horaris</div><div class="ci-val">Dll–Dij: 10:00–14:00 · 15:00–19:00<br/>Divendres: 10:00–14:00 · Cap de setmana: tancat</div></div>
-          </div>
+          <div class="ci"><div class="ci-ic"><i class="ph ph-map-pin"></i></div><div><div class="ci-lbl">Adreça</div><div class="ci-val">C/ Isidre Duran, 2 · 08420 Canovelles (Barcelona)</div></div></div>
+          <div class="ci"><div class="ci-ic"><i class="ph ph-phone"></i></div><div><div class="ci-lbl">Telèfon</div><div class="ci-val"><a href="tel:938495070">938 49 50 70</a></div></div></div>
+          <div class="ci"><div class="ci-ic"><i class="ph ph-whatsapp-logo"></i></div><div><div class="ci-lbl">WhatsApp</div><div class="ci-val"><a href="https://wa.me/34672377208">672 377 208</a></div></div></div>
+          <div class="ci"><div class="ci-ic"><i class="ph ph-envelope-simple"></i></div><div><div class="ci-lbl">Email</div><div class="ci-val"><a href="mailto:info@vovet.es">info@vovet.es</a></div></div></div>
+          <div class="ci"><div class="ci-ic"><i class="ph ph-clock"></i></div><div><div class="ci-lbl">Horaris</div><div class="ci-val">Dll–Dij: 10:00–14:00 · 15:00–19:00<br/>Divendres: 10:00–14:00 · Cap de setmana: tancat</div></div></div>
         </div>
       </div>
-      <div data-r data-d="1">
+      <div>
         <div class="form-box">
           <h3>Reserva la teva cita</h3>
           <p>Et contactarem en menys de 24 hores per confirmar</p>
@@ -682,31 +688,12 @@ footer{background:#111820;padding:60px 0 26px}
             <div class="fg"><label>Correu electrònic</label><input type="email" placeholder="joan@exemple.com"/></div>
             <div class="frow">
               <div class="fg"><label>Nom de la mascota</label><input type="text" placeholder="Rex, Luna…"/></div>
-              <div class="fg">
-                <label>Tipus d'animal *</label>
-                <select required>
-                  <option value="" disabled selected>Selecciona…</option>
-                  <option>Gos</option><option>Gat</option>
-                  <option>Conill</option><option>Animal exòtic</option>
-                  <option>Au</option><option>Altre</option>
-                </select>
+              <div class="fg"><label>Tipus d'animal *</label>
+                <select required><option value="" disabled selected>Selecciona…</option><option>Gos</option><option>Gat</option><option>Conill</option><option>Animal exòtic</option><option>Au</option><option>Altre</option></select>
               </div>
             </div>
-            <div class="fg">
-              <label>Motiu de la visita</label>
-              <select>
-                <option value="" disabled selected>Selecciona el servei…</option>
-                <option>Primera visita / Revisió general</option>
-                <option>Consulta felina</option>
-                <option>Medicina interna</option>
-                <option>Cirurgia</option>
-                <option>Diagnòstic laboratorial</option>
-                <option>Diagnòstic per imatge</option>
-                <option>Informació plans de salut</option>
-                <option>Alimentació i nutrició</option>
-                <option>Urgència</option>
-                <option>Altre</option>
-              </select>
+            <div class="fg"><label>Motiu de la visita</label>
+              <select><option value="" disabled selected>Selecciona el servei…</option><option>Primera visita / Revisió general</option><option>Consulta felina</option><option>Medicina interna</option><option>Cirurgia</option><option>Diagnòstic laboratorial</option><option>Diagnòstic per imatge</option><option>Informació plans de salut</option><option>Alimentació i nutrició</option><option>Urgència</option><option>Altre</option></select>
             </div>
             <div class="fg"><label>Missatge (opcional)</label><textarea placeholder="Explica'ns el motiu o qualsevol informació rellevant sobre la teva mascota…"></textarea></div>
             <p class="form-legal">En enviar acceptes la nostra <a href="#">Política de Privacitat</a>. Les dades s'usen exclusivament per gestionar la teva cita.</p>
@@ -721,95 +708,58 @@ footer{background:#111820;padding:60px 0 26px}
       </div>
     </div>
   </div>
-</section>
-
-<!-- MAP -->
-<section id="map" style="line-height:0">
-  <iframe
-    src="https://maps.google.com/maps?q=C+Isidre+Duran+2+Canovelles+Barcelona&t=&z=16&ie=UTF8&iwloc=&output=embed"
-    width="100%" height="420" style="border:0;display:block" allowfullscreen
-    loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-    title="Localització Vovet Serveis Veterinaris"></iframe>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="wrap">
-    <div class="footer-top">
-      <div>
-        <img src="cropped-logo_vovet.jpg" alt="Vovet" class="fbrand-logo"/>
-        <p class="fbrand">Clínica veterinària de referència al Vallès Oriental. Cuidem els teus animals amb passió i professionalitat des de 2008.</p>
-        <div class="fsocs">
-          <a class="fsoc" href="#" aria-label="Facebook"><i class="ph ph-facebook-logo"></i></a>
-          <a class="fsoc" href="#" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
-          <a class="fsoc" href="https://wa.me/34672377208" aria-label="WhatsApp"><i class="ph ph-whatsapp-logo"></i></a>
-        </div>
-      </div>
-      <div class="fcol">
-        <h4>Serveis</h4>
-        <ul>
-          <li><a href="#services">Consulta Felina</a></li>
-          <li><a href="#services">Medicina Interna</a></li>
-          <li><a href="#services">Cirurgia</a></li>
-          <li><a href="#services">Diagnòstic Laboratorial</a></li>
-          <li><a href="#services">Diagnòstic per Imatge</a></li>
-          <li><a href="#services">Alimentació</a></li>
-        </ul>
-      </div>
-      <div class="fcol">
-        <h4>Clínica</h4>
-        <ul>
-          <li><a href="#about">Qui som</a></li>
-          <li><a href="#plans">Plans de Salut</a></li>
-          <li><a href="#contact">Reservar cita</a></li>
-          <li><a href="#">Avís Legal</a></li>
-          <li><a href="#">Privacitat</a></li>
-        </ul>
-      </div>
-      <div class="fcol">
-        <h4>Horaris</h4>
-        <div class="fhours">
-          <div class="fhr"><span class="d">Dll – Dijous</span><span class="t">10:00 – 19:00</span></div>
-          <div class="fhr"><span class="d">Divendres</span><span class="t">10:00 – 14:00</span></div>
-          <div class="fhr"><span class="d">Dissabte</span><span class="t">Tancat</span></div>
-          <div class="fhr"><span class="d">Diumenge</span><span class="t">Tancat</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bot">
-      <p>© 2025 Vovet Serveis Veterinaris S.L. Tots els drets reservats.</p>
-      <p><a href="#">Avís Legal</a> &nbsp;·&nbsp; <a href="#">Privacitat</a> &nbsp;·&nbsp; <a href="#">Cookies</a></p>
-    </div>
+  <div id="map" style="line-height:0">
+    <iframe src="https://maps.google.com/maps?q=C+Isidre+Duran+2+Canovelles+Barcelona&t=&z=16&ie=UTF8&iwloc=&output=embed" width="100%" height="380" style="border:0;display:block" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Localització Vovet"></iframe>
   </div>
-</footer>
+</div><!-- /pg-contact -->
 
-<!-- WhatsApp FAB -->
+<!-- WhatsApp -->
 <a class="wa-fab" href="https://wa.me/34672377208" target="_blank" aria-label="WhatsApp">
   <span class="wa-tip">Escriu-nos per WhatsApp</span>
   <i class="ph ph-whatsapp-logo"></i>
 </a>
 
 <script>
-const nb = document.getElementById('navBar');
-window.addEventListener('scroll', () => nb.classList.toggle('stuck', scrollY > 20));
+const PAGES = ['pg-inici','pg-serveis','pg-plans','pg-about','pg-contact'];
 
+function goTo(pageId) {
+  PAGES.forEach(id => {
+    const el = document.getElementById(id);
+    el.classList.remove('active');
+  });
+  document.getElementById(pageId).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'instant' });
+
+  // Update nav active state
+  document.querySelectorAll('.nav-links a[data-page]').forEach(a => {
+    a.classList.toggle('active', a.dataset.page === pageId);
+  });
+
+  // Close mobile menu
+  document.getElementById('navLinks').classList.remove('open');
+  document.getElementById('ham').classList.remove('x');
+}
+
+// Nav sticky
+window.addEventListener('scroll', () =>
+  document.getElementById('navBar').classList.toggle('stuck', scrollY > 20)
+);
+
+// Mobile menu
 function toggleNav() {
   document.getElementById('navLinks').classList.toggle('open');
   document.getElementById('ham').classList.toggle('x');
 }
-document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => {
-  document.getElementById('navLinks').classList.remove('open');
-  document.getElementById('ham').classList.remove('x');
-}));
 
-const ro = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }), { threshold: .1 });
-document.querySelectorAll('[data-r]').forEach(el => ro.observe(el));
-
+// Form
 function doSubmit(e) {
   e.preventDefault();
   document.getElementById('cForm').style.display = 'none';
   document.getElementById('fOk').style.display = 'block';
 }
+
+// Boot: show home
+goTo('pg-inici');
 </script>
 </body>
 </html>
