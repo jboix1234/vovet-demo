@@ -7,7 +7,8 @@
 <meta name="description" content="Clínica veterinària de referència a Canovelles des de 2008. Medicina interna, cirurgia i diagnòstic d'última generació per a la teva mascota."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet"/>
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -16,273 +17,285 @@ body{font-family:'Nunito',sans-serif;background:#FFFBF5;color:#1C2B3A;overflow-x
 :root{
   --teal:#13B8CC;--teal-d:#0D98AA;--teal-l:#E5F8FA;--teal-mid:#C2EEF3;
   --yellow:#FFC93C;--yellow-l:#FFF8E1;
-  --green:#52C97A;--green-l:#E8F8EE;
+  --green:#52C97A;--green-l:#EAFAF1;
   --coral:#FF7B6B;--coral-l:#FFF0EE;
   --dark:#1C2B3A;--mid:#3D5066;--gray:#7A8FA0;
-  --cream:#FFFBF5;--sand:#F5EFE3;--white:#fff;
-  --r:20px;--r2:28px;--r3:40px;
+  --cream:#FFFBF5;--sand:#F5EFE3;
+  --r:20px;--r2:28px;
 }
 
 .wrap{max-width:1200px;margin:0 auto;padding:0 36px}
-@media(max-width:600px){.wrap{padding:0 18px}}
-
-img{display:block;max-width:100%}
-a{cursor:pointer}
+@media(max-width:600px){.wrap{padding:0 20px}}
 
 /* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0}
-.nav-bar{margin:16px 36px;background:rgba(255,251,245,.85);backdrop-filter:blur(20px);border:1px solid rgba(0,0,0,.07);border-radius:50px;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:20px;transition:box-shadow .3s}
+nav{position:fixed;top:0;left:0;right:0;z-index:100}
+.nav-bar{margin:14px 32px;background:rgba(255,251,245,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(0,0,0,.07);border-radius:50px;padding:10px 18px;display:flex;align-items:center;justify-content:space-between;gap:16px;transition:box-shadow .3s}
 .nav-bar.stuck{box-shadow:0 8px 40px rgba(0,0,0,.1)}
-.nav-logo{display:flex;align-items:center}
-.nav-logo img{height:36px;width:auto;mix-blend-mode:multiply}
+.nav-logo img{height:34px;width:auto;mix-blend-mode:multiply;display:block}
 .nav-links{display:flex;align-items:center;gap:2px;list-style:none}
-.nav-links a{font-size:.82rem;font-weight:700;color:var(--mid);text-decoration:none;padding:7px 14px;border-radius:50px;transition:background .2s,color .2s}
+.nav-links a{font-size:.82rem;font-weight:700;color:var(--mid);text-decoration:none;padding:7px 13px;border-radius:50px;transition:background .2s,color .2s}
 .nav-links a:hover{background:var(--teal-l);color:var(--teal-d)}
-.nav-cta{font-size:.82rem;font-weight:800;background:var(--teal);color:#fff;padding:10px 22px;border-radius:50px;text-decoration:none;transition:background .25s,transform .2s;white-space:nowrap}
+.nav-cta{font-size:.82rem;font-weight:800;background:var(--teal);color:#fff;padding:10px 22px;border-radius:50px;text-decoration:none;transition:background .25s,transform .2s;white-space:nowrap;flex-shrink:0}
 .nav-cta:hover{background:var(--teal-d);transform:scale(1.03)}
-.ham{display:none;flex-direction:column;gap:4.5px;cursor:pointer;padding:4px;margin-left:4px}
+.ham{display:none;flex-direction:column;gap:4.5px;cursor:pointer;padding:4px}
 .ham span{display:block;width:20px;height:2px;background:var(--dark);border-radius:2px;transition:.3s}
 .ham.x span:nth-child(1){transform:rotate(45deg) translate(4px,4.5px)}
 .ham.x span:nth-child(2){opacity:0}
 .ham.x span:nth-child(3){transform:rotate(-45deg) translate(4px,-4.5px)}
-
 @media(max-width:768px){
   .ham{display:flex}
   .nav-links{position:fixed;inset:0;background:var(--dark);flex-direction:column;align-items:center;justify-content:center;gap:6px;opacity:0;pointer-events:none;transition:opacity .3s;z-index:200}
   .nav-links.open{opacity:1;pointer-events:all}
-  .nav-links a{font-size:1.5rem;color:rgba(255,255,255,.8);padding:12px 28px}
-  .nav-links a:hover{background:rgba(255,255,255,.08);color:#fff}
+  .nav-links a{font-size:1.5rem;color:rgba(255,255,255,.8);padding:12px 28px;border-radius:0}
+  .nav-links a:hover{background:transparent;color:var(--teal)}
   .nav-cta{display:none}
-  .nav-bar{margin:12px 16px}
+  .nav-bar{margin:10px 14px}
 }
 
 /* ── HERO ── */
-#hero{padding:130px 0 80px;overflow:hidden}
-.hero-inner{display:grid;grid-template-columns:1fr 460px;gap:48px;align-items:center}
-.hero-chip{display:inline-flex;align-items:center;gap:8px;background:var(--green-l);color:#2e9956;font-size:.75rem;font-weight:800;padding:8px 16px;border-radius:50px;margin-bottom:24px;letter-spacing:.02em}
-.hero-chip::before{content:'';width:7px;height:7px;border-radius:50%;background:#52C97A;flex-shrink:0}
-h1{font-size:clamp(2.6rem,5.5vw,4.4rem);font-weight:900;line-height:1.05;letter-spacing:-.02em;color:var(--dark);margin-bottom:20px}
-h1 .line-accent{color:var(--teal);display:block}
-h1 .line-wave{position:relative;display:inline-block}
-h1 .line-wave::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:5px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8'%3E%3Cpath d='M0 4 Q15 0 30 4 Q45 8 60 4 Q75 0 90 4 Q105 8 120 4' fill='none' stroke='%23FFC93C' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x;background-size:60px 5px}
-.hero-desc{font-size:1.05rem;color:var(--gray);line-height:1.8;max-width:480px;margin-bottom:36px;font-weight:400}
-.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:44px}
-.btn-main{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:800;background:var(--teal);color:#fff;padding:16px 28px;border-radius:50px;text-decoration:none;transition:background .25s,transform .2s,box-shadow .2s;box-shadow:0 4px 16px rgba(19,184,204,.3)}
-.btn-main:hover{background:var(--teal-d);transform:translateY(-2px);box-shadow:0 8px 24px rgba(19,184,204,.4)}
-.btn-sec{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:700;background:var(--sand);color:var(--dark);padding:16px 26px;border-radius:50px;text-decoration:none;transition:background .2s,transform .2s}
-.btn-sec:hover{background:var(--sand);filter:brightness(.96);transform:translateY(-2px)}
-.hero-trust{display:flex;gap:32px;flex-wrap:wrap}
-.trust-item{text-align:center}
-.trust-val{font-size:1.6rem;font-weight:900;color:var(--dark);line-height:1}
-.trust-lbl{font-size:.72rem;color:var(--gray);margin-top:3px}
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,rgba(15,25,35,.82) 0%,rgba(15,25,35,.65) 55%,rgba(15,25,35,.2) 100%)}
+.hero-content{position:relative;z-index:1;padding:140px 0 90px;max-width:660px}
+.hero-chip{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.9);font-size:.75rem;font-weight:800;padding:8px 16px;border-radius:50px;margin-bottom:28px}
+.hero-chip i{font-size:.9rem;color:var(--teal)}
+h1{font-size:clamp(2.8rem,6vw,4.8rem);font-weight:900;line-height:1.03;letter-spacing:-.025em;color:#fff;margin-bottom:20px}
+h1 .accent{color:var(--teal)}
+h1 .underlined{position:relative;display:inline-block}
+h1 .underlined::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:5px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 8'%3E%3Cpath d='M0 4 Q15 0 30 4 Q45 8 60 4 Q75 0 90 4 Q105 8 120 4' fill='none' stroke='%23FFC93C' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") repeat-x;background-size:60px 5px}
+.hero-desc{font-size:1.08rem;color:rgba(255,255,255,.72);line-height:1.78;max-width:500px;margin-bottom:36px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px}
+.btn-main{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:800;background:var(--teal);color:#fff;padding:15px 28px;border-radius:50px;text-decoration:none;transition:background .25s,transform .2s,box-shadow .2s;box-shadow:0 4px 16px rgba(19,184,204,.35)}
+.btn-main:hover{background:var(--teal-d);transform:translateY(-2px);box-shadow:0 8px 24px rgba(19,184,204,.45)}
+.btn-main i,.btn-sec i{font-size:1rem}
+.btn-sec{display:inline-flex;align-items:center;gap:8px;font-size:.9rem;font-weight:700;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);border:1.5px solid rgba(255,255,255,.3);color:#fff;padding:14px 24px;border-radius:50px;text-decoration:none;transition:all .2s}
+.btn-sec:hover{background:rgba(255,255,255,.2);transform:translateY(-2px)}
+.hero-trust{display:flex;gap:32px;flex-wrap:wrap;padding-top:36px;border-top:1px solid rgba(255,255,255,.15)}
+.trust-item .trust-val{font-size:1.6rem;font-weight:900;color:#fff;line-height:1}
+.trust-item .trust-lbl{font-size:.72rem;color:rgba(255,255,255,.55);margin-top:3px}
+@media(max-width:640px){.hero-content{padding:120px 0 70px}}
 
-/* Hero visual */
-.hero-visual{position:relative;display:flex;justify-content:center;align-items:center}
-.hero-main-circle{width:360px;height:360px;border-radius:50%;background:var(--teal-l);display:flex;align-items:center;justify-content:center;position:relative;overflow:visible;flex-shrink:0}
-.hero-main-circle img{width:210px;height:210px;object-fit:contain;mix-blend-mode:multiply;filter:drop-shadow(0 8px 20px rgba(0,0,0,.15))}
-.h-card{position:absolute;background:#fff;border-radius:20px;padding:14px 18px;box-shadow:0 6px 28px rgba(0,0,0,.1);display:flex;align-items:center;gap:12px;white-space:nowrap}
-.h-card-icon{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
-.h-card strong{display:block;font-size:.82rem;font-weight:800;color:var(--dark)}
-.h-card span{font-size:.72rem;color:var(--gray)}
-.h-card-tl{top:-16px;right:-24px}
-.h-card-br{bottom:0;left:-40px}
-.h-card-tl .h-card-icon{background:var(--yellow-l)}
-.h-card-br .h-card-icon{background:var(--coral-l)}
-
-@media(max-width:980px){
-  .hero-inner{grid-template-columns:1fr}
-  .hero-visual{display:none}
-}
-
-/* ── WHY VOVET ── */
-#why{padding:80px 0;background:var(--sand)}
-.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.why-card{background:#fff;border-radius:var(--r2);padding:30px 26px;transition:transform .3s,box-shadow .3s}
-.why-card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(0,0,0,.08)}
+/* ── WHY ── */
+#why{padding:72px 0;background:var(--sand)}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.why-card{background:#fff;border-radius:var(--r2);padding:28px 24px;transition:transform .3s,box-shadow .3s}
+.why-card:hover{transform:translateY(-5px);box-shadow:0 12px 36px rgba(0,0,0,.08)}
 .why-card:nth-child(1){background:var(--teal-l)}
 .why-card:nth-child(3){background:var(--yellow-l)}
-.why-icon{font-size:2.2rem;margin-bottom:16px;display:block}
-.why-card h3{font-size:1rem;font-weight:800;color:var(--dark);margin-bottom:8px}
-.why-card p{font-size:.85rem;color:var(--gray);line-height:1.65}
+.why-icon{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:1.5rem}
+.why-card:nth-child(1) .why-icon{background:rgba(19,184,204,.15);color:var(--teal-d)}
+.why-card:nth-child(2) .why-icon{background:var(--teal-l);color:var(--teal-d)}
+.why-card:nth-child(3) .why-icon{background:rgba(255,201,60,.2);color:#9a7000}
+.why-card:nth-child(4) .why-icon{background:var(--green-l);color:#2a9152}
+.why-card h3{font-size:.95rem;font-weight:800;color:var(--dark);margin-bottom:7px}
+.why-card p{font-size:.83rem;color:var(--gray);line-height:1.65}
 @media(max-width:900px){.why-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:500px){.why-grid{grid-template-columns:1fr}}
+@media(max-width:480px){.why-grid{grid-template-columns:1fr}}
 
-/* ── SECTION TITLE ── */
-.s-label{display:block;font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-d);margin-bottom:12px}
+/* ── SECTION HEADERS ── */
+.s-label{display:block;font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-d);margin-bottom:10px}
 .s-title{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:900;line-height:1.1;letter-spacing:-.02em;color:var(--dark);margin-bottom:14px}
-.s-sub{font-size:1rem;color:var(--gray);line-height:1.75;max-width:540px}
+.s-sub{font-size:.97rem;color:var(--gray);line-height:1.75}
 
 /* ── SERVICES ── */
-#services{padding:100px 0}
-.services-top{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:56px;flex-wrap:wrap}
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.svc{border-radius:var(--r2);padding:32px 28px;transition:transform .3s,box-shadow .3s;cursor:default}
-.svc:hover{transform:translateY(-5px);box-shadow:0 14px 44px rgba(0,0,0,.09)}
-.svc-a{background:#fff;border:1.5px solid #EAF0F3}
-.svc-b{background:var(--teal);color:#fff}
-.svc-c{background:var(--yellow-l);border:1.5px solid #FFE08A}
-.svc-d{background:var(--coral-l);border:1.5px solid #FFCCB8}
-.svc-e{background:var(--green-l);border:1.5px solid #B6ECC6}
-.svc-f{background:var(--sand);border:1.5px solid #E8DDD0}
-.svc-icon{width:58px;height:58px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin-bottom:20px}
-.svc-a .svc-icon{background:var(--teal-l)}
-.svc-b .svc-icon{background:rgba(255,255,255,.18)}
-.svc-c .svc-icon{background:rgba(255,201,60,.2)}
-.svc-d .svc-icon{background:rgba(255,123,107,.15)}
-.svc-e .svc-icon{background:rgba(82,201,122,.15)}
-.svc-f .svc-icon{background:rgba(0,0,0,.06)}
-.svc h3{font-size:1.05rem;font-weight:800;margin-bottom:8px;color:var(--dark)}
-.svc-b h3{color:#fff}
-.svc p{font-size:.85rem;line-height:1.65;color:var(--gray)}
-.svc-b p{color:rgba(255,255,255,.75)}
-@media(max-width:900px){.services-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:550px){.services-grid{grid-template-columns:1fr}}
+#services{padding:96px 0}
+.svc-top{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:52px;flex-wrap:wrap}
+.svc-top .s-sub{max-width:420px}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.svc{border-radius:var(--r2);padding:30px 26px;transition:transform .3s,box-shadow .3s}
+.svc:hover{transform:translateY(-5px);box-shadow:0 14px 40px rgba(0,0,0,.09)}
+.svc-white{background:#fff;border:1.5px solid #EAF0F3}
+.svc-teal{background:var(--teal)}
+.svc-yellow{background:var(--yellow-l);border:1.5px solid #FFE08A}
+.svc-coral{background:var(--coral-l);border:1.5px solid #FFCCB8}
+.svc-green{background:var(--green-l);border:1.5px solid #B6ECC6}
+.svc-sand{background:var(--sand);border:1.5px solid #E8DDD0}
+.svc-icon{width:52px;height:52px;border-radius:16px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;font-size:1.4rem}
+.svc-icon i{font-size:1.5rem}
+.svc-white .svc-icon{background:var(--teal-l);color:var(--teal-d)}
+.svc-teal .svc-icon{background:rgba(255,255,255,.18);color:#fff}
+.svc-yellow .svc-icon{background:rgba(255,201,60,.2);color:#9a7000}
+.svc-coral .svc-icon{background:rgba(255,123,107,.18);color:#c0432f}
+.svc-green .svc-icon{background:rgba(82,201,122,.2);color:#2a8548}
+.svc-sand .svc-icon{background:rgba(0,0,0,.06);color:var(--mid)}
+.svc h3{font-size:1rem;font-weight:800;margin-bottom:8px;color:var(--dark)}
+.svc-teal h3{color:#fff}
+.svc p{font-size:.83rem;line-height:1.65;color:var(--gray)}
+.svc-teal p{color:rgba(255,255,255,.72)}
+@media(max-width:900px){.svc-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:530px){.svc-grid{grid-template-columns:1fr}}
 
 /* ── STATS ── */
-#stats{padding:90px 0;background:var(--teal)}
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;text-align:center}
-.st{padding:20px;border-right:1px solid rgba(255,255,255,.15)}
+#stats{padding:88px 0;background:var(--teal)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);text-align:center}
+.st{padding:16px;border-right:1px solid rgba(255,255,255,.18)}
 .st:last-child{border-right:none}
 .st-num{font-size:clamp(2.6rem,5vw,4rem);font-weight:900;color:#fff;line-height:1;margin-bottom:8px;letter-spacing:-.02em}
-.st-lbl{font-size:.82rem;color:rgba(255,255,255,.65);font-weight:500;line-height:1.4}
-@media(max-width:640px){.stats-grid{grid-template-columns:1fr 1fr}.st:nth-child(2){border-right:none}.st:nth-child(3){border-top:1px solid rgba(255,255,255,.15)}.st:nth-child(4){border-top:1px solid rgba(255,255,255,.15)}}
+.st-lbl{font-size:.8rem;color:rgba(255,255,255,.65);font-weight:500;line-height:1.45}
+@media(max-width:640px){.stats-grid{grid-template-columns:1fr 1fr}.st:nth-child(2){border-right:none}.st:nth-child(3),.st:nth-child(4){border-top:1px solid rgba(255,255,255,.18)}}
 
 /* ── PLANS ── */
-#plans{padding:100px 0;background:var(--sand)}
-.plans-hdr{text-align:center;margin-bottom:60px}
-.plans-hdr .s-sub{margin:0 auto}
-.plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start}
-.plan{border-radius:var(--r2);padding:36px 30px;background:#fff;border:2px solid transparent;transition:transform .3s,box-shadow .3s}
-.plan:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(0,0,0,.09)}
-.plan-pop{background:var(--dark);border-color:var(--dark);transform:scale(1.03)}
-.plan-pop:hover{transform:scale(1.03) translateY(-6px)}
-.plan-badge{display:inline-block;font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:6px 14px;border-radius:50px;margin-bottom:20px}
-.plan .plan-badge{background:var(--teal-l);color:var(--teal-d)}
-.plan-pop .plan-badge{background:rgba(19,184,204,.2);color:var(--teal)}
-.plan-name{font-size:1.5rem;font-weight:900;margin-bottom:6px;color:var(--dark)}
+#plans{padding:96px 0;background:var(--sand)}
+.plans-hdr{text-align:center;margin-bottom:56px}
+.plans-hdr .s-sub{max-width:520px;margin:0 auto}
+.plans-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+.plan{border-radius:var(--r2);padding:32px 26px;background:#fff;border:1.5px solid rgba(0,0,0,.07);transition:transform .3s,box-shadow .3s;position:relative}
+.plan:hover{transform:translateY(-5px);box-shadow:0 14px 44px rgba(0,0,0,.09)}
+/* Row 1: spans 2 cols each */
+.plan:nth-child(1){grid-column:span 2}
+.plan:nth-child(2){grid-column:span 2}
+.plan:nth-child(3){grid-column:span 2}
+/* Row 2: centered — 2 cards of 2 cols, padded with 1 col each side */
+.plan:nth-child(4){grid-column:2/span 2}
+.plan:nth-child(5){grid-column:4/span 2}
+/* Featured */
+.plan-pop{background:var(--dark);border-color:var(--dark)}
+.plan-pop:hover{transform:translateY(-5px)}
+.pop-tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--yellow);color:var(--dark);font-size:.68rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;padding:5px 16px;border-radius:50px;white-space:nowrap}
+.plan-icon{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;font-size:1.3rem}
+.plan-icon i{font-size:1.35rem}
+.plan .plan-icon{background:var(--teal-l);color:var(--teal-d)}
+.plan-pop .plan-icon{background:rgba(19,184,204,.18);color:var(--teal)}
+.plan-name{font-size:1.15rem;font-weight:900;color:var(--dark);margin-bottom:6px}
 .plan-pop .plan-name{color:#fff}
-.plan-desc{font-size:.85rem;color:var(--gray);margin-bottom:28px;line-height:1.5}
-.plan-pop .plan-desc{color:rgba(255,255,255,.55)}
-.plan ul{list-style:none;margin-bottom:32px;display:flex;flex-direction:column;gap:12px}
-.plan ul li{display:flex;align-items:flex-start;gap:10px;font-size:.88rem;color:var(--mid);line-height:1.45}
-.plan-pop ul li{color:rgba(255,255,255,.75)}
-.plan ul li::before{content:'✓';width:20px;height:20px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:900;margin-top:1px}
-.plan ul li::before{background:var(--teal-l);color:var(--teal-d)}
-.plan-pop ul li::before{background:rgba(19,184,204,.2);color:var(--teal)}
-.plan-btn{display:block;text-align:center;font-size:.85rem;font-weight:800;padding:14px;border-radius:50px;text-decoration:none;transition:all .25s;letter-spacing:.02em}
-.plan .plan-btn{background:var(--teal);color:#fff;box-shadow:0 4px 16px rgba(19,184,204,.25)}
+.plan-desc{font-size:.8rem;color:var(--gray);margin-bottom:22px;line-height:1.5}
+.plan-pop .plan-desc{color:rgba(255,255,255,.5)}
+.plan ul{list-style:none;margin-bottom:28px;display:flex;flex-direction:column;gap:10px}
+.plan ul li{display:flex;align-items:flex-start;gap:9px;font-size:.82rem;color:var(--mid);line-height:1.45}
+.plan-pop ul li{color:rgba(255,255,255,.72)}
+.plan ul li i{font-size:1rem;flex-shrink:0;margin-top:1px;color:var(--teal)}
+.plan-pop ul li i{color:var(--teal)}
+.plan-discounts{margin-top:4px;padding-top:14px;border-top:1px solid rgba(0,0,0,.07)}
+.plan-pop .plan-discounts{border-color:rgba(255,255,255,.1)}
+.plan-discounts-title{font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.07em;color:var(--gray);margin-bottom:8px}
+.plan-pop .plan-discounts-title{color:rgba(255,255,255,.35)}
+.plan-discounts ul{margin-bottom:0;gap:7px}
+.plan-discounts ul li i{color:var(--yellow)}
+.plan-btn{display:block;text-align:center;font-size:.82rem;font-weight:800;padding:13px;border-radius:50px;text-decoration:none;transition:all .25s}
+.plan .plan-btn{background:var(--teal);color:#fff}
 .plan .plan-btn:hover{background:var(--teal-d)}
 .plan-pop .plan-btn{background:var(--teal);color:#fff}
 .plan-pop .plan-btn:hover{background:var(--teal-d)}
-.pop-label{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--yellow);color:var(--dark);font-size:.7rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;padding:6px 18px;border-radius:50px;white-space:nowrap}
-@media(max-width:900px){.plans-grid{grid-template-columns:1fr;max-width:440px;margin:0 auto}.plan-pop{transform:none}}
+@media(max-width:980px){
+  .plans-grid{grid-template-columns:1fr 1fr}
+  .plan:nth-child(1),.plan:nth-child(2),.plan:nth-child(3),.plan:nth-child(4),.plan:nth-child(5){grid-column:span 1}
+}
+@media(max-width:560px){
+  .plans-grid{grid-template-columns:1fr}
+  .plan:nth-child(1),.plan:nth-child(2),.plan:nth-child(3),.plan:nth-child(4),.plan:nth-child(5){grid-column:span 1}
+}
 
 /* ── ABOUT ── */
-#about{padding:100px 0;background:var(--cream)}
+#about{padding:96px 0;background:var(--cream)}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
 .about-img{position:relative}
-.about-blob{width:100%;aspect-ratio:1;border-radius:60% 40% 55% 45% / 50% 60% 40% 50%;background:var(--teal-l);display:flex;align-items:center;justify-content:center;overflow:hidden;font-size:6rem;transition:border-radius 6s ease-in-out;animation:blob 8s ease-in-out infinite}
+.about-blob{width:100%;aspect-ratio:1;border-radius:60% 40% 55% 45% / 50% 60% 40% 50%;background:var(--teal-l);display:flex;align-items:center;justify-content:center;animation:blob 8s ease-in-out infinite}
+.about-blob i{font-size:6rem;color:var(--teal-d);opacity:.45}
 @keyframes blob{0%,100%{border-radius:60% 40% 55% 45% / 50% 60% 40% 50%}33%{border-radius:40% 60% 45% 55% / 60% 40% 55% 45%}66%{border-radius:55% 45% 60% 40% / 45% 55% 40% 60%}}
-.about-year-badge{position:absolute;bottom:20px;right:-12px;background:var(--yellow);border-radius:20px;padding:16px 20px;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.1)}
-.about-year-badge strong{display:block;font-size:1.8rem;font-weight:900;color:var(--dark);line-height:1}
-.about-year-badge span{font-size:.7rem;color:rgba(28,43,58,.6);text-transform:uppercase;letter-spacing:.06em;font-weight:700}
-.about-text .s-title{margin-bottom:18px}
-.about-text p{font-size:.97rem;color:var(--gray);line-height:1.8;margin-bottom:16px}
-.about-features{display:flex;flex-direction:column;gap:14px;margin:28px 0 36px}
+.about-badge{position:absolute;bottom:20px;right:-12px;background:var(--yellow);border-radius:18px;padding:14px 18px;text-align:center;box-shadow:0 4px 16px rgba(0,0,0,.1)}
+.about-badge strong{display:block;font-size:1.7rem;font-weight:900;color:var(--dark);line-height:1}
+.about-badge span{font-size:.68rem;color:rgba(28,43,58,.55);text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+.about-text p{font-size:.95rem;color:var(--gray);line-height:1.8;margin-bottom:14px}
+.about-feats{display:flex;flex-direction:column;gap:14px;margin:26px 0 34px}
 .af{display:flex;align-items:flex-start;gap:14px}
-.af-icon{width:42px;height:42px;border-radius:14px;background:var(--teal-l);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
-.af-text strong{display:block;font-size:.9rem;font-weight:800;color:var(--dark);margin-bottom:2px}
-.af-text span{font-size:.82rem;color:var(--gray)}
-@media(max-width:900px){.about-grid{grid-template-columns:1fr;gap:48px}.about-img{max-width:380px;margin:0 auto}.about-year-badge{right:0}}
+.af-icon{width:40px;height:40px;border-radius:12px;background:var(--teal-l);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.af-icon i{font-size:1.2rem;color:var(--teal-d)}
+.af-text strong{display:block;font-size:.88rem;font-weight:800;color:var(--dark);margin-bottom:2px}
+.af-text span{font-size:.8rem;color:var(--gray)}
+@media(max-width:900px){.about-grid{grid-template-columns:1fr;gap:48px}.about-img{max-width:360px;margin:0 auto}.about-badge{right:0}}
 
 /* ── TESTIMONIALS ── */
-#testi{padding:100px 0;background:var(--sand)}
-.testi-hdr{text-align:center;margin-bottom:60px}
-.testi-hdr .s-sub{margin:0 auto}
-.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.tcard{background:#fff;border-radius:var(--r2);padding:30px 26px;transition:transform .3s,box-shadow .3s}
-.tcard:hover{transform:translateY(-4px);box-shadow:0 10px 36px rgba(0,0,0,.08)}
-.tcard-stars{color:#FFC93C;font-size:.95rem;letter-spacing:2px;margin-bottom:14px}
-.tcard-text{font-size:.9rem;color:var(--mid);line-height:1.72;margin-bottom:22px;font-style:italic}
-.tcard-person{display:flex;align-items:center;gap:12px}
-.tcard-av{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.85rem;color:#fff;flex-shrink:0}
-.av-t{background:var(--teal)}
-.av-y{background:var(--yellow);color:var(--dark)}
-.av-g{background:var(--green)}
-.tcard-name{font-size:.88rem;font-weight:800;color:var(--dark)}
-.tcard-role{font-size:.75rem;color:var(--gray)}
+#testi{padding:96px 0;background:var(--sand)}
+.testi-hdr{text-align:center;margin-bottom:52px}
+.testi-hdr .s-sub{max-width:480px;margin:0 auto}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.tc{background:#fff;border-radius:var(--r2);padding:28px 24px;transition:transform .3s,box-shadow .3s}
+.tc:hover{transform:translateY(-4px);box-shadow:0 10px 32px rgba(0,0,0,.08)}
+.tc-stars{display:flex;gap:3px;margin-bottom:14px;color:var(--yellow)}
+.tc-stars i{font-size:1rem}
+.tc-text{font-size:.88rem;color:var(--mid);line-height:1.72;margin-bottom:20px;font-style:italic}
+.tc-person{display:flex;align-items:center;gap:12px}
+.tc-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.82rem;color:#fff;flex-shrink:0}
+.av-a{background:var(--teal)}
+.av-b{background:var(--yellow);color:var(--dark)}
+.av-c{background:var(--green)}
+.tc-name{font-size:.86rem;font-weight:800;color:var(--dark)}
+.tc-role{font-size:.74rem;color:var(--gray)}
 @media(max-width:900px){.testi-grid{grid-template-columns:1fr;max-width:440px;margin:0 auto}}
 
 /* ── CONTACT ── */
-#contact{padding:100px 0;background:var(--dark)}
-.contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
-.contact-info h2{font-size:clamp(2rem,4vw,3rem);font-weight:900;letter-spacing:-.02em;line-height:1.1;color:#fff;margin-bottom:16px}
-.contact-info h2 em{font-style:normal;color:var(--teal)}
-.contact-info > p{font-size:.97rem;color:rgba(255,255,255,.5);line-height:1.75;margin-bottom:44px}
-.cinfo-list{display:flex;flex-direction:column;gap:22px}
-.ci{display:flex;align-items:flex-start;gap:16px}
-.ci-icon{width:46px;height:46px;border-radius:14px;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
-.ci-label{font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:3px}
-.ci-val{font-size:.88rem;color:rgba(255,255,255,.75);line-height:1.55}
+#contact{padding:96px 0;background:var(--dark)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.contact-left h2{font-size:clamp(2rem,3.8vw,3rem);font-weight:900;letter-spacing:-.02em;line-height:1.1;color:#fff;margin-bottom:14px}
+.contact-left h2 em{font-style:normal;color:var(--teal)}
+.contact-left>p{font-size:.95rem;color:rgba(255,255,255,.48);line-height:1.75;margin-bottom:40px}
+.ci-list{display:flex;flex-direction:column;gap:20px}
+.ci{display:flex;align-items:flex-start;gap:14px}
+.ci-ic{width:44px;height:44px;border-radius:13px;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ci-ic i{font-size:1.2rem;color:var(--teal)}
+.ci-lbl{font-size:.65rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:3px}
+.ci-val{font-size:.86rem;color:rgba(255,255,255,.72);line-height:1.55}
 .ci-val a{color:var(--teal);text-decoration:none;font-weight:700}
 .ci-val a:hover{color:#7de8f8}
 
-.form-box{background:var(--cream);border-radius:var(--r2);padding:44px 36px}
-.form-box h3{font-size:1.3rem;font-weight:900;color:var(--dark);margin-bottom:4px}
-.form-box > p{font-size:.82rem;color:var(--gray);margin-bottom:28px}
-.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.fg{margin-bottom:14px}
-.fg label{display:block;font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--mid);margin-bottom:6px}
-.fg input,.fg select,.fg textarea{width:100%;background:#fff;border:1.5px solid #DDE6EC;border-radius:12px;padding:12px 16px;font-family:'Nunito',sans-serif;font-size:.9rem;color:var(--dark);outline:none;transition:border-color .2s,box-shadow .2s;appearance:none}
+.form-box{background:var(--cream);border-radius:var(--r2);padding:40px 34px}
+.form-box h3{font-size:1.25rem;font-weight:900;color:var(--dark);margin-bottom:4px}
+.form-box>p{font-size:.8rem;color:var(--gray);margin-bottom:26px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fg{margin-bottom:12px}
+.fg label{display:block;font-size:.7rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--mid);margin-bottom:5px}
+.fg input,.fg select,.fg textarea{width:100%;background:#fff;border:1.5px solid #DDE6EC;border-radius:11px;padding:11px 14px;font-family:'Nunito',sans-serif;font-size:.9rem;color:var(--dark);outline:none;transition:border-color .2s,box-shadow .2s;appearance:none}
 .fg input::placeholder,.fg textarea::placeholder{color:#B8C9D4}
 .fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(19,184,204,.12)}
-.fg select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A8FA0' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:38px;cursor:pointer}
-.fg textarea{resize:vertical;min-height:100px}
-.form-legal{font-size:.76rem;color:var(--gray);margin-bottom:18px;line-height:1.55}
-.form-legal a{color:var(--teal-d);text-decoration:none;font-weight:700}
-.form-send{width:100%;font-family:'Nunito',sans-serif;font-size:.92rem;font-weight:800;background:var(--teal);color:#fff;border:none;padding:16px;border-radius:50px;cursor:pointer;transition:background .25s,transform .2s;box-shadow:0 4px 16px rgba(19,184,204,.3)}
+.fg select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A8FA0' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:36px;cursor:pointer}
+.fg textarea{resize:vertical;min-height:96px}
+.form-legal{font-size:.74rem;color:var(--gray);margin-bottom:16px;line-height:1.5}
+.form-legal a{color:var(--teal-d);font-weight:700;text-decoration:none}
+.form-send{width:100%;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:800;background:var(--teal);color:#fff;border:none;padding:15px;border-radius:50px;cursor:pointer;transition:background .25s,transform .2s;box-shadow:0 4px 14px rgba(19,184,204,.28)}
 .form-send:hover{background:var(--teal-d);transform:translateY(-2px)}
-.form-ok{display:none;text-align:center;padding:48px 20px}
-.form-ok .ok-em{font-size:3rem;margin-bottom:16px}
-.form-ok strong{display:block;font-size:1.1rem;font-weight:900;color:var(--dark);margin-bottom:8px}
-.form-ok p{font-size:.88rem;color:var(--gray)}
-
-@media(max-width:900px){.contact-inner{grid-template-columns:1fr;gap:56px}}
-@media(max-width:580px){.frow{grid-template-columns:1fr}.form-box{padding:28px 20px}}
+.form-ok{display:none;text-align:center;padding:44px 20px}
+.form-ok .ok-ic{width:60px;height:60px;border-radius:50%;background:var(--teal-l);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.form-ok .ok-ic i{font-size:1.8rem;color:var(--teal-d)}
+.form-ok strong{display:block;font-size:1.05rem;font-weight:900;color:var(--dark);margin-bottom:8px}
+.form-ok p{font-size:.85rem;color:var(--gray)}
+@media(max-width:900px){.contact-grid{grid-template-columns:1fr;gap:52px}}
+@media(max-width:560px){.frow{grid-template-columns:1fr}.form-box{padding:26px 18px}}
 
 /* ── FOOTER ── */
-footer{background:#111820;padding:64px 0 28px}
-.footer-top{display:grid;grid-template-columns:1.8fr 1fr 1fr 1.4fr;gap:48px;margin-bottom:52px}
-.fbrand img{height:34px;mix-blend-mode:lighten;filter:brightness(10);margin-bottom:16px}
-.fbrand p{font-size:.84rem;color:rgba(255,255,255,.4);line-height:1.75;margin-bottom:22px;font-weight:300}
-.fsocials{display:flex;gap:10px}
-.fsoc{width:36px;height:36px;border-radius:10px;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;color:rgba(255,255,255,.45);text-decoration:none;transition:all .25s}
+footer{background:#111820;padding:60px 0 26px}
+.footer-top{display:grid;grid-template-columns:1.8fr 1fr 1fr 1.4fr;gap:44px;margin-bottom:48px}
+.fbrand-logo{height:32px;display:block;margin-bottom:14px;mix-blend-mode:luminosity;filter:brightness(0) invert(1)}
+.fbrand p{font-size:.82rem;color:rgba(255,255,255,.38);line-height:1.75;margin-bottom:20px}
+.fsocs{display:flex;gap:8px}
+.fsoc{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.4);text-decoration:none;transition:all .25s}
+.fsoc i{font-size:1rem}
 .fsoc:hover{background:var(--teal);color:#fff;transform:translateY(-2px)}
-.fcol h4{font-size:.65rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:16px}
+.fcol h4{font-size:.64rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:14px}
 .fcol ul{list-style:none;display:flex;flex-direction:column;gap:9px}
-.fcol ul a{font-size:.84rem;color:rgba(255,255,255,.45);text-decoration:none;transition:color .2s}
+.fcol ul a{font-size:.82rem;color:rgba(255,255,255,.42);text-decoration:none;transition:color .2s}
 .fcol ul a:hover{color:var(--teal)}
-.fhours{display:flex;flex-direction:column;gap:8px}
-.fhr{display:flex;justify-content:space-between;gap:12px;font-size:.82rem}
-.fhr .d{color:rgba(255,255,255,.4)}
-.fhr .t{color:rgba(255,255,255,.7);font-weight:600}
-.footer-bottom{border-top:1px solid rgba(255,255,255,.06);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
-.footer-bottom p,.footer-bottom a{font-size:.75rem;color:rgba(255,255,255,.25);text-decoration:none}
-.footer-bottom a:hover{color:var(--teal)}
+.fhours{display:flex;flex-direction:column;gap:7px}
+.fhr{display:flex;justify-content:space-between;gap:12px;font-size:.8rem}
+.fhr .d{color:rgba(255,255,255,.38)}
+.fhr .t{color:rgba(255,255,255,.68);font-weight:600}
+.footer-bot{border-top:1px solid rgba(255,255,255,.05);padding-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.footer-bot p,.footer-bot a{font-size:.73rem;color:rgba(255,255,255,.22);text-decoration:none}
+.footer-bot a:hover{color:var(--teal)}
 @media(max-width:900px){.footer-top{grid-template-columns:1fr 1fr}}
-@media(max-width:500px){.footer-top{grid-template-columns:1fr}.footer-bottom{flex-direction:column;text-align:center}}
+@media(max-width:480px){.footer-top{grid-template-columns:1fr}.footer-bot{flex-direction:column;text-align:center}}
 
 /* ── WhatsApp ── */
-.wa-fab{position:fixed;bottom:26px;right:26px;z-index:90;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 18px rgba(37,211,102,.45);transition:transform .25s,box-shadow .25s;animation:pop .5s 1s cubic-bezier(.34,1.56,.64,1) both}
-.wa-fab:hover{transform:scale(1.1);box-shadow:0 8px 28px rgba(37,211,102,.6)}
-.wa-fab svg{width:26px;height:26px;fill:#fff}
-.wa-tip{position:absolute;right:70px;top:50%;transform:translateY(-50%);background:var(--dark);color:#fff;font-size:.78rem;font-weight:700;padding:8px 14px;border-radius:10px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s}
+.wa-fab{position:fixed;bottom:26px;right:26px;z-index:90;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 18px rgba(37,211,102,.45);transition:transform .25s,box-shadow .25s;animation:pop .5s 1s cubic-bezier(.34,1.56,.64,1) both}
+.wa-fab:hover{transform:scale(1.1);box-shadow:0 8px 26px rgba(37,211,102,.55)}
+.wa-fab i{font-size:1.6rem;color:#fff}
+.wa-tip{position:absolute;right:66px;top:50%;transform:translateY(-50%);background:var(--dark);color:#fff;font-size:.76rem;font-weight:700;padding:7px 13px;border-radius:9px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s}
 .wa-tip::after{content:'';position:absolute;left:100%;top:50%;transform:translateY(-50%);border:5px solid transparent;border-left-color:var(--dark)}
 .wa-fab:hover .wa-tip{opacity:1}
 @keyframes pop{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
 
-/* ── Reveals ── */
-[data-r]{opacity:0;transform:translateY(22px);transition:opacity .65s cubic-bezier(.4,0,.2,1),transform .65s cubic-bezier(.4,0,.2,1)}
+/* ── Scroll reveal ── */
+[data-r]{opacity:0;transform:translateY(20px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
 [data-r].in{opacity:1;transform:none}
 [data-d="1"]{transition-delay:.1s}[data-d="2"]{transition-delay:.18s}
 [data-d="3"]{transition-delay:.26s}[data-d="4"]{transition-delay:.34s}
@@ -307,45 +320,29 @@ footer{background:#111820;padding:64px 0 28px}
 
 <!-- HERO -->
 <section id="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=1920&q=80" alt="Gossos i gats feliços"/>
+  </div>
   <div class="wrap">
-    <div class="hero-inner">
-      <div>
-        <div class="hero-chip" data-r>Clínica veterinària a Canovelles · Oberta des de 2008</div>
-        <h1 data-r data-d="1">
-          El teu millor<br/>
-          <span class="line-accent">amic mereix</span>
-          la millor<br/>
-          <span class="line-wave">atenció.</span>
-        </h1>
-        <p class="hero-desc" data-r data-d="2">Cuidem la teva mascota com si fos la nostra. Medicina interna, cirurgia especialitzada i diagnòstic avançat per a gossos, gats i exòtics.</p>
-        <div class="hero-btns" data-r data-d="3">
-          <a href="#contact" class="btn-main">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zm-2.5 9a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg>
-            Reserva la teva cita
-          </a>
-          <a href="tel:938495070" class="btn-sec">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58z"/></svg>
-            938 495 070
-          </a>
-        </div>
-        <div class="hero-trust" data-r data-d="4">
-          <div class="trust-item"><div class="trust-val">+15</div><div class="trust-lbl">Anys d'experiència</div></div>
-          <div class="trust-item"><div class="trust-val">+5.000</div><div class="trust-lbl">Pacients atesos</div></div>
-          <div class="trust-item"><div class="trust-val" style="color:var(--teal)">4.9★</div><div class="trust-lbl">A Google Maps</div></div>
-        </div>
+    <div class="hero-content">
+      <div class="hero-chip" data-r>
+        <i class="ph ph-check-circle-fill"></i>
+        Clínica veterinària a Canovelles · Oberta des de 2008
       </div>
-      <div class="hero-visual" data-r data-d="2">
-        <div class="hero-main-circle">
-          <img src="images.png" alt="Mascota Vovet"/>
-        </div>
-        <div class="h-card h-card-tl">
-          <div class="h-card-icon">⏰</div>
-          <div><strong>Oberts ara</strong><span>Dll–Div · 10h–19h</span></div>
-        </div>
-        <div class="h-card h-card-br">
-          <div class="h-card-icon">💬</div>
-          <div><strong>WhatsApp</strong><span>672 377 208</span></div>
-        </div>
+      <h1 data-r data-d="1">
+        El teu millor<br/>
+        <span class="accent">amic mereix</span><br/>
+        la millor <span class="underlined">atenció.</span>
+      </h1>
+      <p class="hero-desc" data-r data-d="2">Cuidem la teva mascota com si fos la nostra. Medicina interna, cirurgia especialitzada i diagnòstic avançat per a gossos, gats i animals exòtics.</p>
+      <div class="hero-btns" data-r data-d="3">
+        <a href="#contact" class="btn-main"><i class="ph ph-calendar-check"></i> Reserva la teva cita</a>
+        <a href="tel:938495070" class="btn-sec"><i class="ph ph-phone"></i> 938 495 070</a>
+      </div>
+      <div class="hero-trust" data-r data-d="4">
+        <div class="trust-item"><div class="trust-val">+15</div><div class="trust-lbl">Anys d'experiència</div></div>
+        <div class="trust-item"><div class="trust-val">+5.000</div><div class="trust-lbl">Pacients atesos</div></div>
+        <div class="trust-item"><div class="trust-val" style="color:var(--teal)">4.9★</div><div class="trust-lbl">A Google Maps</div></div>
       </div>
     </div>
   </div>
@@ -356,24 +353,24 @@ footer{background:#111820;padding:64px 0 28px}
   <div class="wrap">
     <div class="why-grid">
       <div class="why-card" data-r>
-        <span class="why-icon">🏥</span>
+        <div class="why-icon"><i class="ph ph-first-aid"></i></div>
         <h3>Equipament d'última generació</h3>
-        <p>Radiografia digital, ecògrafs d'alta resolució i laboratori propi per a diagnòstics ràpids i precisos.</p>
+        <p>Radiografia digital, ecògrafs i laboratori propi per a diagnòstics ràpids i precisos.</p>
       </div>
       <div class="why-card" data-r data-d="1">
-        <span class="why-icon">❤️</span>
+        <div class="why-icon"><i class="ph ph-heart"></i></div>
         <h3>Tracte proper i de confiança</h3>
-        <p>Tractem cada mascota com un membre de la família. Empatia i professionalitat en cada visita.</p>
+        <p>Tractem cada mascota com un membre de la família. Empatia en cada visita.</p>
       </div>
       <div class="why-card" data-r data-d="2">
-        <span class="why-icon">🎓</span>
+        <div class="why-icon"><i class="ph ph-graduation-cap"></i></div>
         <h3>Equip especialitzat</h3>
-        <p>Professionals amb formació continuada en les últimes tècniques i especialitats veterinàries.</p>
+        <p>Professionals amb formació continuada en les últimes tècniques veterinàries.</p>
       </div>
       <div class="why-card" data-r data-d="3">
-        <span class="why-icon">📱</span>
+        <div class="why-icon"><i class="ph ph-chat-circle-dots"></i></div>
         <h3>Sempre disponibles</h3>
-        <p>Atenció per WhatsApp i telèfon. Respostes ràpides per a qualsevol dubte urgent.</p>
+        <p>Atenció per WhatsApp i telèfon per a qualsevol dubte urgent.</p>
       </div>
     </div>
   </div>
@@ -382,43 +379,43 @@ footer{background:#111820;padding:64px 0 28px}
 <!-- SERVICES -->
 <section id="services">
   <div class="wrap">
-    <div class="services-top" data-r>
+    <div class="svc-top" data-r>
       <div>
         <span class="s-label">Els nostres serveis</span>
         <h2 class="s-title">Tot el que necessita<br/>la teva mascota</h2>
       </div>
-      <p class="s-sub">Atenció integral amb professionals especialitzats i tecnologia avançada per a tots els animals.</p>
+      <p class="s-sub">Atenció integral amb professionals especialitzats i tecnologia avançada per a tota mena d'animals.</p>
     </div>
-    <div class="services-grid">
-      <div class="svc svc-a" data-r>
-        <div class="svc-icon">🩺</div>
+    <div class="svc-grid">
+      <div class="svc svc-white" data-r>
+        <div class="svc-icon"><i class="ph ph-cat"></i></div>
+        <h3>Consulta Felina</h3>
+        <p>Amb un espai propi adaptat a les seves necessitats, els gats es troben més a gust durant la visita.</p>
+      </div>
+      <div class="svc svc-teal" data-r data-d="1">
+        <div class="svc-icon"><i class="ph ph-stethoscope"></i></div>
         <h3>Medicina Interna</h3>
-        <p>Diagnòstic i tractament de malalties complexes amb avaluació integral i seguiment personalitzat.</p>
+        <p>Atenció general i especialitzada de gossos, gats i petits mamífers amb seguiment personalitzat.</p>
       </div>
-      <div class="svc svc-b" data-r data-d="1">
-        <div class="svc-icon">📡</div>
+      <div class="svc svc-yellow" data-r data-d="2">
+        <div class="svc-icon"><i class="ph ph-scissors"></i></div>
+        <h3>Servei de Cirurgia</h3>
+        <p>Quiròfan equipat amb tot l'instrumental necessari per al més ampli ventall d'intervencions.</p>
+      </div>
+      <div class="svc svc-coral" data-r>
+        <div class="svc-icon"><i class="ph ph-flask"></i></div>
+        <h3>Diagnòstic Laboratorial</h3>
+        <p>Analitzadors hematològics i bioquímics propis per realitzar un ampli ventall de proves in situ.</p>
+      </div>
+      <div class="svc svc-green" data-r data-d="1">
+        <div class="svc-icon"><i class="ph ph-scan"></i></div>
         <h3>Diagnòstic per Imatge</h3>
-        <p>Radiografia digital i ecografia d'alta resolució per a diagnòstics precisos i ràpids.</p>
+        <p>Aparells de radiodiagnòstic d'última generació i ecocardiografia per a diagnòstics precisos.</p>
       </div>
-      <div class="svc svc-c" data-r data-d="2">
-        <div class="svc-icon">🔬</div>
-        <h3>Laboratori Clínic</h3>
-        <p>Anàlisis de sang, orina i citologies amb resultats en el mínim temps possible.</p>
-      </div>
-      <div class="svc svc-d" data-r>
-        <div class="svc-icon">🏥</div>
-        <h3>Cirurgia</h3>
-        <p>Cirurgia general i especialitzada amb protocols anestèsics avançats i seguiment postoperatori.</p>
-      </div>
-      <div class="svc svc-e" data-r data-d="1">
-        <div class="svc-icon">💊</div>
-        <h3>Medicina Preventiva</h3>
-        <p>Vacunes, desparasitació i controls periòdics per mantenir la teva mascota sana.</p>
-      </div>
-      <div class="svc svc-f" data-r data-d="2">
-        <div class="svc-icon">🦜</div>
-        <h3>Animals Exòtics</h3>
-        <p>Atenció especialitzada per a rèptils, aus, conills i petits mamífers exòtics.</p>
+      <div class="svc svc-sand" data-r data-d="2">
+        <div class="svc-icon"><i class="ph ph-bowl-food"></i></div>
+        <h3>Alimentació</h3>
+        <p>Alimentació especialitzada per a gossos, gats i altres complements nutricionals que puguis necessitar.</p>
       </div>
     </div>
   </div>
@@ -428,22 +425,10 @@ footer{background:#111820;padding:64px 0 28px}
 <section id="stats">
   <div class="wrap">
     <div class="stats-grid">
-      <div class="st" data-r>
-        <div class="st-num">+15</div>
-        <div class="st-lbl">Anys cuidant<br/>mascotes</div>
-      </div>
-      <div class="st" data-r data-d="1">
-        <div class="st-num">+5k</div>
-        <div class="st-lbl">Pacients<br/>atesos</div>
-      </div>
-      <div class="st" data-r data-d="2">
-        <div class="st-num">98%</div>
-        <div class="st-lbl">Clients que<br/>ens recomanen</div>
-      </div>
-      <div class="st" data-r data-d="3">
-        <div class="st-num">4.9★</div>
-        <div class="st-lbl">Valoració<br/>Google Maps</div>
-      </div>
+      <div class="st" data-r><div class="st-num">+15</div><div class="st-lbl">Anys cuidant<br/>mascotes</div></div>
+      <div class="st" data-r data-d="1"><div class="st-num">+5k</div><div class="st-lbl">Pacients<br/>atesos</div></div>
+      <div class="st" data-r data-d="2"><div class="st-num">98%</div><div class="st-lbl">Clients que<br/>ens recomanen</div></div>
+      <div class="st" data-r data-d="3"><div class="st-num">4.9★</div><div class="st-lbl">Valoració<br/>Google Maps</div></div>
     </div>
   </div>
 </section>
@@ -454,51 +439,124 @@ footer{background:#111820;padding:64px 0 28px}
     <div class="plans-hdr" data-r>
       <span class="s-label">Plans de Salut</span>
       <h2 class="s-title">Cuida-la tot l'any</h2>
-      <p class="s-sub">Subscriu-te i garanteix la millor atenció preventiva per a la teva mascota amb avantatges exclusius per a subscriptors.</p>
+      <p class="s-sub">Subscriu-te al pla adequat per a la teva mascota i garanteix la millor atenció preventiva amb avantatges exclusius.</p>
     </div>
     <div class="plans-grid">
+
+      <!-- Cadell Gos -->
       <div class="plan" data-r data-d="1">
-        <div class="plan-badge">Bàsic</div>
-        <div class="plan-name">Pla Bàsic</div>
-        <p class="plan-desc">Per a mascotes joves i sanes que volen mantenir-se en forma.</p>
+        <div class="plan-icon"><i class="ph ph-dog"></i></div>
+        <div class="plan-name">Pla Cadell Gos</div>
+        <p class="plan-desc">Per als gossos en els seus primers mesos de vida</p>
         <ul>
-          <li>Revisió anual completa</li>
-          <li>Vacuna antiràbica + polivalent</li>
-          <li>Desparasitació interna i externa</li>
-          <li>Xip d'identificació inclòs</li>
-          <li>Consells nutricionals bàsics</li>
+          <li><i class="ph ph-check-circle-fill"></i> Pla de vacunació complet</li>
+          <li><i class="ph ph-check-circle-fill"></i> 4 desparasitacions internes</li>
+          <li><i class="ph ph-check-circle-fill"></i> Anàlisi d'orina i coprologia</li>
+          <li><i class="ph ph-check-circle-fill"></i> Xip d'identificació + cartilla</li>
+          <li><i class="ph ph-check-circle-fill"></i> Revisions mensuals de creixement</li>
         </ul>
-        <a href="#contact" class="plan-btn">Vull saber-ne més</a>
+        <div class="plan-discounts">
+          <div class="plan-discounts-title">Descomptes inclosos</div>
+          <ul>
+            <li><i class="ph ph-tag-fill"></i> 25% esterilització · 20% dental · 5% alimentació</li>
+          </ul>
+        </div>
+        <br/>
+        <a href="#contact" class="plan-btn">Més informació</a>
       </div>
-      <div class="plan plan-pop" data-r data-d="2" style="position:relative">
-        <div class="pop-label">⭐ El més escollit</div>
-        <div class="plan-badge">Complet</div>
-        <div class="plan-name">Pla Plus</div>
-        <p class="plan-desc">La protecció completa per a la teva mascota durant tot l'any.</p>
+
+      <!-- Pla Gatet -->
+      <div class="plan" data-r data-d="2">
+        <div class="plan-icon"><i class="ph ph-cat"></i></div>
+        <div class="plan-name">Pla Gatet</div>
+        <p class="plan-desc">Per als gats en els seus primers mesos de vida</p>
         <ul>
-          <li>Tot del Pla Bàsic inclòs</li>
-          <li>Analítica de sang anual</li>
-          <li>Ecografia preventiva</li>
-          <li>Neteja dental bàsica</li>
-          <li>Consultes il·limitades</li>
-          <li>15% de descompte en cirurgia</li>
+          <li><i class="ph ph-check-circle-fill"></i> Pla de vacunació complet</li>
+          <li><i class="ph ph-check-circle-fill"></i> 4 desparasitacions internes</li>
+          <li><i class="ph ph-check-circle-fill"></i> Anàlisi d'orina i coprologia</li>
+          <li><i class="ph ph-check-circle-fill"></i> Test leucèmia / FIV inclòs</li>
+          <li><i class="ph ph-check-circle-fill"></i> Xip d'identificació + cartilla</li>
         </ul>
-        <a href="#contact" class="plan-btn">Vull saber-ne més</a>
+        <div class="plan-discounts">
+          <div class="plan-discounts-title">Descomptes inclosos</div>
+          <ul>
+            <li><i class="ph ph-tag-fill"></i> 25% esterilització · 20% dental · 5% alimentació</li>
+          </ul>
+        </div>
+        <br/>
+        <a href="#contact" class="plan-btn">Més informació</a>
       </div>
+
+      <!-- Pla Adult Gos (featured) -->
+      <div class="plan plan-pop" data-r data-d="3">
+        <div class="pop-tag">Més complet</div>
+        <div class="plan-icon"><i class="ph ph-paw-print"></i></div>
+        <div class="plan-name">Pla Adult Gos</div>
+        <p class="plan-desc">Protecció completa per al teu gos adult</p>
+        <ul>
+          <li><i class="ph ph-check-circle-fill"></i> Vacunació anual completa</li>
+          <li><i class="ph ph-check-circle-fill"></i> Desparasitació interna (x2/any)</li>
+          <li><i class="ph ph-check-circle-fill"></i> Analítica de sang bàsica</li>
+          <li><i class="ph ph-check-circle-fill"></i> Anàlisi d'orina i coprologia</li>
+          <li><i class="ph ph-check-circle-fill"></i> Test Leishmania inclòs</li>
+          <li><i class="ph ph-check-circle-fill"></i> Revisions veterinàries semestrals</li>
+        </ul>
+        <div class="plan-discounts">
+          <div class="plan-discounts-title">Descomptes inclosos</div>
+          <ul>
+            <li><i class="ph ph-tag-fill"></i> 25% esterilització · 20% dental · 5% alimentació</li>
+          </ul>
+        </div>
+        <br/>
+        <a href="#contact" class="plan-btn">Més informació</a>
+      </div>
+
+      <!-- Pla Adult Gat -->
+      <div class="plan" data-r data-d="2">
+        <div class="plan-icon"><i class="ph ph-cat"></i></div>
+        <div class="plan-name">Pla Adult Gat</div>
+        <p class="plan-desc">Protecció completa per al teu gat adult</p>
+        <ul>
+          <li><i class="ph ph-check-circle-fill"></i> Vacunació anual completa</li>
+          <li><i class="ph ph-check-circle-fill"></i> Desparasitació interna (x2/any)</li>
+          <li><i class="ph ph-check-circle-fill"></i> Analítica de sang bàsica</li>
+          <li><i class="ph ph-check-circle-fill"></i> Anàlisi d'orina i coprologia</li>
+          <li><i class="ph ph-check-circle-fill"></i> Test FelV / FIV inclòs</li>
+          <li><i class="ph ph-check-circle-fill"></i> Revisions veterinàries semestrals</li>
+        </ul>
+        <div class="plan-discounts">
+          <div class="plan-discounts-title">Descomptes inclosos</div>
+          <ul>
+            <li><i class="ph ph-tag-fill"></i> 25% esterilització · 20% dental · 5% alimentació</li>
+          </ul>
+        </div>
+        <br/>
+        <a href="#contact" class="plan-btn">Més informació</a>
+      </div>
+
+      <!-- Pla Geriàtric -->
       <div class="plan" data-r data-d="3">
-        <div class="plan-badge">Sènior</div>
-        <div class="plan-name">Pla Sènior</div>
-        <p class="plan-desc">Dissenyat per a mascotes de més de 7 anys amb necessitats especials.</p>
+        <div class="plan-icon"><i class="ph ph-heart-pulse"></i></div>
+        <div class="plan-name">Pla Geriàtric</div>
+        <p class="plan-desc">Atenció especialitzada per a mascotes de més de 7 anys</p>
         <ul>
-          <li>Tot del Pla Plus inclòs</li>
-          <li>Controls geriàtrics (x2/any)</li>
-          <li>Perfil renal i hepàtic</li>
-          <li>Control de pressió arterial</li>
-          <li>Nutrició geriàtrica personalitzada</li>
-          <li>Atenció prioritària garantida</li>
+          <li><i class="ph ph-check-circle-fill"></i> Vacunació anual completa</li>
+          <li><i class="ph ph-check-circle-fill"></i> Desparasitació interna (x2/any)</li>
+          <li><i class="ph ph-check-circle-fill"></i> Analítica de sang completa</li>
+          <li><i class="ph ph-check-circle-fill"></i> Anàlisi d'orina completa</li>
+          <li><i class="ph ph-check-circle-fill"></i> Electrocardiograma inclòs</li>
+          <li><i class="ph ph-check-circle-fill"></i> Revisions veterinàries trimestrals</li>
         </ul>
-        <a href="#contact" class="plan-btn">Vull saber-ne més</a>
+        <div class="plan-discounts">
+          <div class="plan-discounts-title">Descomptes inclosos</div>
+          <ul>
+            <li><i class="ph ph-tag-fill"></i> 25% esterilització · 20% dental · 5% alimentació</li>
+          </ul>
+        </div>
+        <br/>
+        <a href="#contact" class="plan-btn">Més informació</a>
       </div>
+
     </div>
   </div>
 </section>
@@ -508,41 +566,29 @@ footer{background:#111820;padding:64px 0 28px}
   <div class="wrap">
     <div class="about-grid">
       <div class="about-img" data-r>
-        <div class="about-blob">🐾</div>
-        <div class="about-year-badge">
-          <strong>2008</strong>
-          <span>Des de</span>
-        </div>
+        <div class="about-blob"><i class="ph ph-paw-print"></i></div>
+        <div class="about-badge"><strong>2008</strong><span>Des de</span></div>
       </div>
-      <div class="about-text" data-r data-d="1">
+      <div data-r data-d="1">
         <span class="s-label">Qui som</span>
         <h2 class="s-title">Una clínica feta<br/>amb amor pels animals</h2>
-        <p>Des de 2008, cuidem de les mascotes de Canovelles i del Vallès Oriental. Cada animal que arriba a Vovet rep una atenció personalitzada, atenta i plena de calidesa.</p>
-        <p>El nostre equip de veterinaris es forma contínuament per estar sempre al dia de les últimes tècniques i tractaments.</p>
-        <div class="about-features">
+        <p class="about-text">Des de 2008, cuidem de les mascotes de Canovelles i del Vallès Oriental. Cada animal que arriba a Vovet rep una atenció personalitzada, propera i plena de professionalitat.</p>
+        <p class="about-text">El nostre equip de veterinaris es forma contínuament per estar sempre al dia de les últimes tècniques i tractaments.</p>
+        <div class="about-feats">
           <div class="af">
-            <div class="af-icon">🏆</div>
-            <div class="af-text">
-              <strong>Clínica de referència al Vallès</strong>
-              <span>Reconeguts per la comunitat local com a primera opció</span>
-            </div>
+            <div class="af-icon"><i class="ph ph-trophy"></i></div>
+            <div class="af-text"><strong>Clínica de referència al Vallès</strong><span>Reconeguts per la comunitat local com a primera opció</span></div>
           </div>
           <div class="af">
-            <div class="af-icon">🔬</div>
-            <div class="af-text">
-              <strong>Tecnologia pròpia in-house</strong>
-              <span>Laboratori, radiologia i ecografia propis per diagnòstics immediats</span>
-            </div>
+            <div class="af-icon"><i class="ph ph-test-tube"></i></div>
+            <div class="af-text"><strong>Tecnologia pròpia in-house</strong><span>Laboratori, radiologia i ecografia per a diagnòstics immediats</span></div>
           </div>
           <div class="af">
-            <div class="af-icon">🤝</div>
-            <div class="af-text">
-              <strong>Sempre al teu costat</strong>
-              <span>Atenció propera per WhatsApp i telèfon per a qualsevol dubte</span>
-            </div>
+            <div class="af-icon"><i class="ph ph-handshake"></i></div>
+            <div class="af-text"><strong>Sempre al teu costat</strong><span>Atenció per WhatsApp i telèfon per a qualsevol dubte</span></div>
           </div>
         </div>
-        <a href="#contact" class="btn-main">Concerta una visita</a>
+        <a href="#contact" class="btn-main"><i class="ph ph-calendar-check"></i> Concerta una visita</a>
       </div>
     </div>
   </div>
@@ -557,28 +603,34 @@ footer{background:#111820;padding:64px 0 28px}
       <p class="s-sub">Més de 5.000 famílies confien en nosaltres per cuidar les seves mascotes.</p>
     </div>
     <div class="testi-grid">
-      <div class="tcard" data-r>
-        <div class="tcard-stars">★★★★★</div>
-        <p class="tcard-text">"Portem el nostre gos a Vovet des que era cadell. L'equip és increïble — professionals, empàtics i sempre disposats a explicar-te tot. 100% recomanable."</p>
-        <div class="tcard-person">
-          <div class="tcard-av av-t">MR</div>
-          <div><div class="tcard-name">Maria Rodríguez</div><div class="tcard-role">Propietària d'en Max 🐕</div></div>
+      <div class="tc" data-r>
+        <div class="tc-stars">
+          <i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i>
+        </div>
+        <p class="tc-text">"Portem el nostre gos a Vovet des que era cadell. L'equip és increïble — professionals, empàtics i sempre disposats a explicar-te tot. 100% recomanable."</p>
+        <div class="tc-person">
+          <div class="tc-av av-a">MR</div>
+          <div><div class="tc-name">Maria Rodríguez</div><div class="tc-role">Propietària d'en Max, gos</div></div>
         </div>
       </div>
-      <div class="tcard" data-r data-d="1">
-        <div class="tcard-stars">★★★★★</div>
-        <p class="tcard-text">"La nostra gata va tenir una urgència i ens van atendre ràpidament. Molt professionals i empàtics. Les instal·lacions estan immaculades."</p>
-        <div class="tcard-person">
-          <div class="tcard-av av-y">JP</div>
-          <div><div class="tcard-name">Jordi Puig</div><div class="tcard-role">Propietari de la Mia 🐈</div></div>
+      <div class="tc" data-r data-d="1">
+        <div class="tc-stars">
+          <i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i>
+        </div>
+        <p class="tc-text">"La nostra gata va tenir una urgència i ens van atendre ràpidament. Molt professionals i empàtics. Les instal·lacions estan immaculades."</p>
+        <div class="tc-person">
+          <div class="tc-av av-b">JP</div>
+          <div><div class="tc-name">Jordi Puig</div><div class="tc-role">Propietari de la Mia, gat</div></div>
         </div>
       </div>
-      <div class="tcard" data-r data-d="2">
-        <div class="tcard-stars">★★★★★</div>
-        <p class="tcard-text">"El pla de salut val molt la pena. Tenim tot controlat durant tot l'any i el preu és molt raonable. L'equip és fantàstic i molt proper."</p>
-        <div class="tcard-person">
-          <div class="tcard-av av-g">AS</div>
-          <div><div class="tcard-name">Anna Solà</div><div class="tcard-role">Família amb 2 gossos 🐾</div></div>
+      <div class="tc" data-r data-d="2">
+        <div class="tc-stars">
+          <i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i><i class="ph ph-star-fill"></i>
+        </div>
+        <p class="tc-text">"El pla de salut val molt la pena. Tenim tot controlat durant tot l'any i el preu és molt raonable. L'equip és fantàstic i molt proper."</p>
+        <div class="tc-person">
+          <div class="tc-av av-c">AS</div>
+          <div><div class="tc-name">Anna Solà</div><div class="tc-role">Família amb 2 gossos</div></div>
         </div>
       </div>
     </div>
@@ -588,30 +640,30 @@ footer{background:#111820;padding:64px 0 28px}
 <!-- CONTACT -->
 <section id="contact">
   <div class="wrap">
-    <div class="contact-inner">
-      <div class="contact-info" data-r>
+    <div class="contact-grid">
+      <div class="contact-left" data-r>
         <h2>Estem aquí<br/>per <em>ajudar-te</em></h2>
-        <p>Reserva la teva cita o contacta'ns per a qualsevol dubte. Et respondrem el més aviat possible.</p>
-        <div class="cinfo-list">
+        <p>Reserva la teva cita o contacta'ns per qualsevol dubte. Et respondrem el més aviat possible.</p>
+        <div class="ci-list">
           <div class="ci">
-            <div class="ci-icon">📍</div>
-            <div><div class="ci-label">Adreça</div><div class="ci-val">C/ Isidre Duran, 2<br/>08420 Canovelles (Barcelona)</div></div>
+            <div class="ci-ic"><i class="ph ph-map-pin"></i></div>
+            <div><div class="ci-lbl">Adreça</div><div class="ci-val">C/ Isidre Duran, 2 · 08420 Canovelles (Barcelona)</div></div>
           </div>
           <div class="ci">
-            <div class="ci-icon">📞</div>
-            <div><div class="ci-label">Telèfon</div><div class="ci-val"><a href="tel:938495070">938 49 50 70</a></div></div>
+            <div class="ci-ic"><i class="ph ph-phone"></i></div>
+            <div><div class="ci-lbl">Telèfon</div><div class="ci-val"><a href="tel:938495070">938 49 50 70</a></div></div>
           </div>
           <div class="ci">
-            <div class="ci-icon">💬</div>
-            <div><div class="ci-label">WhatsApp</div><div class="ci-val"><a href="https://wa.me/34672377208">672 377 208</a></div></div>
+            <div class="ci-ic"><i class="ph ph-whatsapp-logo"></i></div>
+            <div><div class="ci-lbl">WhatsApp</div><div class="ci-val"><a href="https://wa.me/34672377208">672 377 208</a></div></div>
           </div>
           <div class="ci">
-            <div class="ci-icon">✉️</div>
-            <div><div class="ci-label">Email</div><div class="ci-val"><a href="mailto:info@vovet.es">info@vovet.es</a></div></div>
+            <div class="ci-ic"><i class="ph ph-envelope-simple"></i></div>
+            <div><div class="ci-lbl">Email</div><div class="ci-val"><a href="mailto:info@vovet.es">info@vovet.es</a></div></div>
           </div>
           <div class="ci">
-            <div class="ci-icon">🕐</div>
-            <div><div class="ci-label">Horaris</div><div class="ci-val">Dll–Dij: 10:00–14:00 · 15:00–19:00<br/>Divendres: 10:00–14:00<br/>Cap de setmana: tancat</div></div>
+            <div class="ci-ic"><i class="ph ph-clock"></i></div>
+            <div><div class="ci-lbl">Horaris</div><div class="ci-val">Dll–Dij: 10:00–14:00 · 15:00–19:00<br/>Divendres: 10:00–14:00 · Cap de setmana: tancat</div></div>
           </div>
         </div>
       </div>
@@ -631,9 +683,9 @@ footer{background:#111820;padding:64px 0 28px}
                 <label>Tipus d'animal *</label>
                 <select required>
                   <option value="" disabled selected>Selecciona…</option>
-                  <option>Gos 🐕</option><option>Gat 🐈</option>
-                  <option>Conill 🐇</option><option>Animal exòtic 🦜</option>
-                  <option>Au 🐦</option><option>Altre</option>
+                  <option>Gos</option><option>Gat</option>
+                  <option>Conill</option><option>Animal exòtic</option>
+                  <option>Au</option><option>Altre</option>
                 </select>
               </div>
             </div>
@@ -642,10 +694,15 @@ footer{background:#111820;padding:64px 0 28px}
               <select>
                 <option value="" disabled selected>Selecciona el servei…</option>
                 <option>Primera visita / Revisió general</option>
-                <option>Vacunació</option><option>Cirurgia</option>
+                <option>Consulta felina</option>
+                <option>Medicina interna</option>
+                <option>Cirurgia</option>
+                <option>Diagnòstic laboratorial</option>
                 <option>Diagnòstic per imatge</option>
                 <option>Informació plans de salut</option>
-                <option>Urgència</option><option>Altre</option>
+                <option>Alimentació i nutrició</option>
+                <option>Urgència</option>
+                <option>Altre</option>
               </select>
             </div>
             <div class="fg"><label>Missatge (opcional)</label><textarea placeholder="Explica'ns el motiu o qualsevol informació rellevant sobre la teva mascota…"></textarea></div>
@@ -653,7 +710,7 @@ footer{background:#111820;padding:64px 0 28px}
             <button type="submit" class="form-send">Enviar sol·licitud de cita →</button>
           </form>
           <div class="form-ok" id="fOk">
-            <div class="ok-em">🐾</div>
+            <div class="ok-ic"><i class="ph ph-paw-print"></i></div>
             <strong>Sol·licitud enviada!</strong>
             <p>Gràcies! Et contactem aviat per confirmar la teva cita.</p>
           </div>
@@ -667,23 +724,24 @@ footer{background:#111820;padding:64px 0 28px}
 <footer>
   <div class="wrap">
     <div class="footer-top">
-      <div class="fbrand">
-        <img src="cropped-logo_vovet.jpg" alt="Vovet" style="height:34px;display:block;margin-bottom:16px;mix-blend-mode:luminosity;filter:brightness(0) invert(1)"/>
-        <p>Clínica veterinària de referència al Vallès Oriental. Cuidem els teus animals amb passió i professionalitat des de 2008.</p>
-        <div class="fsocials">
-          <a class="fsoc" href="#" aria-label="Facebook">fb</a>
-          <a class="fsoc" href="#" aria-label="Instagram">ig</a>
-          <a class="fsoc" href="https://wa.me/34672377208" aria-label="WhatsApp">wa</a>
+      <div>
+        <img src="cropped-logo_vovet.jpg" alt="Vovet" class="fbrand-logo"/>
+        <p class="fbrand">Clínica veterinària de referència al Vallès Oriental. Cuidem els teus animals amb passió i professionalitat des de 2008.</p>
+        <div class="fsocs">
+          <a class="fsoc" href="#" aria-label="Facebook"><i class="ph ph-facebook-logo"></i></a>
+          <a class="fsoc" href="#" aria-label="Instagram"><i class="ph ph-instagram-logo"></i></a>
+          <a class="fsoc" href="https://wa.me/34672377208" aria-label="WhatsApp"><i class="ph ph-whatsapp-logo"></i></a>
         </div>
       </div>
       <div class="fcol">
         <h4>Serveis</h4>
         <ul>
+          <li><a href="#services">Consulta Felina</a></li>
           <li><a href="#services">Medicina Interna</a></li>
-          <li><a href="#services">Diagnòstic Imatge</a></li>
-          <li><a href="#services">Laboratori Clínic</a></li>
           <li><a href="#services">Cirurgia</a></li>
-          <li><a href="#services">Animals Exòtics</a></li>
+          <li><a href="#services">Diagnòstic Laboratorial</a></li>
+          <li><a href="#services">Diagnòstic per Imatge</a></li>
+          <li><a href="#services">Alimentació</a></li>
         </ul>
       </div>
       <div class="fcol">
@@ -699,50 +757,46 @@ footer{background:#111820;padding:64px 0 28px}
       <div class="fcol">
         <h4>Horaris</h4>
         <div class="fhours">
-          <div class="fhr"><span class="d">Dll–Dijous</span><span class="t">10–19h</span></div>
-          <div class="fhr"><span class="d">Divendres</span><span class="t">10–14h</span></div>
+          <div class="fhr"><span class="d">Dll – Dijous</span><span class="t">10:00 – 19:00</span></div>
+          <div class="fhr"><span class="d">Divendres</span><span class="t">10:00 – 14:00</span></div>
           <div class="fhr"><span class="d">Dissabte</span><span class="t">Tancat</span></div>
           <div class="fhr"><span class="d">Diumenge</span><span class="t">Tancat</span></div>
         </div>
       </div>
     </div>
-    <div class="footer-bottom">
+    <div class="footer-bot">
       <p>© 2025 Vovet Serveis Veterinaris S.L. Tots els drets reservats.</p>
       <p><a href="#">Avís Legal</a> &nbsp;·&nbsp; <a href="#">Privacitat</a> &nbsp;·&nbsp; <a href="#">Cookies</a></p>
     </div>
   </div>
 </footer>
 
-<!-- WhatsApp -->
+<!-- WhatsApp FAB -->
 <a class="wa-fab" href="https://wa.me/34672377208" target="_blank" aria-label="WhatsApp">
   <span class="wa-tip">Escriu-nos per WhatsApp</span>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg>
+  <i class="ph ph-whatsapp-logo"></i>
 </a>
 
 <script>
-// Nav sticky
-const nb=document.getElementById('navBar');
-window.addEventListener('scroll',()=>nb.classList.toggle('stuck',scrollY>20));
+const nb = document.getElementById('navBar');
+window.addEventListener('scroll', () => nb.classList.toggle('stuck', scrollY > 20));
 
-// Mobile menu
-function toggleNav(){
+function toggleNav() {
   document.getElementById('navLinks').classList.toggle('open');
   document.getElementById('ham').classList.toggle('x');
 }
-document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{
+document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => {
   document.getElementById('navLinks').classList.remove('open');
   document.getElementById('ham').classList.remove('x');
 }));
 
-// Reveal on scroll
-const ro=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.1});
-document.querySelectorAll('[data-r]').forEach(el=>ro.observe(el));
+const ro = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }), { threshold: .1 });
+document.querySelectorAll('[data-r]').forEach(el => ro.observe(el));
 
-// Form submit
-function doSubmit(e){
+function doSubmit(e) {
   e.preventDefault();
-  document.getElementById('cForm').style.display='none';
-  document.getElementById('fOk').style.display='block';
+  document.getElementById('cForm').style.display = 'none';
+  document.getElementById('fOk').style.display = 'block';
 }
 </script>
 </body>
